@@ -1,0 +1,14 @@
+input{
+    border:none;
+    border-bottom: 2px solid black;
+    outline: none;
+    margin-right:1rem;
+}
+
+input:focus{
+    border-bottom: 2px solid lightblue;
+}
+
+label{
+    margin-right:5px;
+}

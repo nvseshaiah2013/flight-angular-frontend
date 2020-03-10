@@ -1,0 +1,24 @@
+<div class="container-fluid">
+    <div class="row pt-5">
+        <div class="offset-md-3 col-12 col-md-6 p-4">
+            <h2 class="text-center mb-5 card-header">
+                Login To View Flights
+            </h2>
+            <form [formGroup]="loginForm" (ngSubmit)="login()" novalidate>
+                <div class="form-group row">
+                    <label for="username" class="col-12 col-md-4 text-md-right">Username <sup class="text-danger">*</sup></label>
+                    <input type="text" class="col-12 col-md-7" placeholder="Enter Username" formControlName="username" id="username">
+                </div>
+                <div class="form-group row">
+                    <label for="password" class="col-12 col-md-4 text-md-right">Password <sup class="text-danger">*</sup> </label>
+                    <input type="password" class="col-12 col-md-7"formControlName="password" id="password" placeholder="Enter Password">
+                </div>
+                <button type="submit" class="btn btn-primary btn-block mt-5">Login</button>
+                <div class="row my-3">                    
+                        <p class="text-muted col-12 col-md-6 text-md-right">Don't Have Account?</p>
+                        <a routerLink="/sign-in" class="col-12 col-md-6" >Create Account</a>                    
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,18 @@
+<nav class="navbar navbar-toggleable-sm navbar-inverse bg-inverse">
+ 
+
+    <a class="navbar-brand ml-5 mt-3" routerLink="/welcome">Flight Reservation System</a>
+    <button class="navbar-toggler navbar-toggler-right mt-3" (click)="isMenuCollapsed=!isMenuCollapsed" type="button"
+      data-toggle="collapse" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <fa-icon [icon]="faEllipsisH"></fa-icon>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" [ngbCollapse]="isMenuCollapsed">
+      <div class="navbar-nav">
+      </div>
+      <div class="navbar-nav">
+        <a class="nav-item nav-link mt-3 font-weight-bold mr-3" routerLink="/view-tickets">My Tickets</a>
+        <a class="nav-item nav-link mt-3 mr-3 font-weight-bold" routerLink="/sign-in">Log Out</a>
+      </div>
+    </div>
+  
+</nav>

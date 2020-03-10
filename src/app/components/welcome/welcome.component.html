@@ -1,0 +1,32 @@
+<div class="container-fluid background">
+  <nav class="navbar navbar-toggleable-sm navbar-inverse">
+    <a class="navbar-brand mt-3" routerLink="/welcome">Flight Reservation System</a>
+    <button class="navbar-toggler navbar-toggler-right mt-3" (click)="isMenuCollapsed=!isMenuCollapsed" type="button"
+      data-toggle="collapse" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <fa-icon [icon]="faEllipsisH"></fa-icon>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" [ngbCollapse]="isMenuCollapsed">
+      <div class="navbar-nav">
+      </div>
+      <div class="navbar-nav">
+        <a class="nav-item nav-link mt-3 font-weight-bold mr-3" routerLink="/login">Login <fa-icon [icon]="faSignInAlt">
+          </fa-icon></a>
+        <a class="nav-item nav-link mt-3 mr-3 font-weight-bold" routerLink="/sign-in">Create Account <fa-icon
+            [icon]="faPlus"></fa-icon></a>
+      </div>
+    </div>
+  </nav>
+  <div class="container-fluid">
+    <div class="row" style="margin-top:30vh;">
+      <div class="col-6 display-4 text-success font-weight-bold">
+        Our Company Gives
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <span class="text_1 text-white display-4">Best Offers</span>
+        <span class="text_2 text-white display-4">Quick Booking</span>
+      </div>
+    </div>
+  </div>
+</div>

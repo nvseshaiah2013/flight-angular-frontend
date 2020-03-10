@@ -1,0 +1,37 @@
+<div class="container">
+    <form class="d-flex mt-3" [formGroup]="searchFlightForm" (ngSubmit)="searchFlight()" novalidate>
+        <div class="form-group mt-2">
+
+            <input type="text" formControlName="source" id="source" placeholder="Enter Source">
+        </div>
+        <div class="form-group  mt-2">
+
+            <input type="text" formControlName="destination" id="destination" placeholder="Enter Destination">
+        </div>
+        <div class="form-group mt-2">
+            <input type="date" formControlName="date" id="date">
+            <!-- <div class="input-group">
+                <input placeholder="Enter Journey Date" formControlName="date" ngbDatepicker #d="ngbDatepicker">
+                
+                    <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button">
+                        <fa-icon [icon]="faCalendarAlt"></fa-icon></button>
+                
+            </div> -->
+        </div>
+        <div class="form-group">
+
+            <button type="submit" class="btn btn-outline-info">Search <fa-icon [icon]="faSearchLocation"></fa-icon>
+            </button>
+        </div>
+    </form>
+</div>
+
+<div class="form-group">
+    <div class="input-group">
+      <input class="form-control" placeholder="yyyy-mm-dd" type="date"
+             name="dp" [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker">
+      <div class="input-group-append">
+        <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button">Open</button>
+      </div>
+    </div>
+  </div>
