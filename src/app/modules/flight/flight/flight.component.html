@@ -1,0 +1,70 @@
+<div class="card" *ngIf="flight">
+    <div class="card-header font-weight-bold  text-center">Air India</div>
+    <div class="card-body">
+
+        <div class="card-text">
+
+            <div class="row">
+                <div class="col-md-3 text-right d-none d-md-block">
+                    <img src="assets/images/air-india.jpg" alt="Air India" class="img-thumbnail rounded-circle">
+
+                </div>
+                <div class="col-6 col-md-3 text-right">
+                    <p class="text-muted mr-4">Source</p>
+                    <p>
+
+                        <fa-icon [icon]="faMapMarkerAlt"></fa-icon> {{ flight.source}}
+                    </p>
+
+                </div>
+
+                <div class="col-6 col-md-3">
+                    <p class="text-muted">
+                        Destination
+                    </p>
+                    <p>
+
+                        <fa-icon [icon]="faMapMarkerAlt"></fa-icon> {{ flight.destination }} </p>
+                </div>
+
+                <div class="mt-4 mt-md-0 col-12 col-md-3">
+                    <div class="card border-success">
+                        <div class="card-header bg-success text-center text-white">Available Seats</div>
+                        <div class="card-body">
+                            34
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="card-footer text-muted">
+
+
+        <button class="btn btn-transparent" (click)="showDetail()">
+            View Details
+            <fa-icon [icon]="faChevronDown"></fa-icon>
+        </button>
+        <button class="btn btn-primary float-right">Book
+            <fa-icon [icon]="faThumbsUp" class="ml-2"></fa-icon>
+        </button>
+
+        <div *ngIf="show" class="row my-3 text-info">
+            <div class="col-12 col-md-3">
+                Price: <fa-icon [icon]="faRupeeSign"></fa-icon> {{flight.price}}
+            </div>
+            <div class="col-12 col-md-3">
+                Check-In Baggage: {{ flight.checkinbaggage}} <fa-icon [icon]="faBalanceScaleLeft"></fa-icon>
+            </div>
+            <div class="col-12 col-md-3">
+                Cargo Baggage: {{ flight.cargobaggage}} <fa-icon [icon]="faBalanceScaleLeft"></fa-icon>
+            </div>
+            <div class="col-12 col-md-3">
+                Cancellation Charge: <fa-icon [icon]="faRupeeSign"></fa-icon> {{ flight.price}}
+            </div>
+        </div>
+
+    </div>
+
+</div>

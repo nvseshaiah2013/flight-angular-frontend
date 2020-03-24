@@ -1,0 +1,15 @@
+.card-header{
+    border-top:3px solid rgb(0, 217, 255);
+}
+
+.ng-dirty.ng-valid:not(form){
+    border:2px solid forestgreen;
+}
+
+.ng-touched.ng-invalid:not(form){
+    border:2px solid rgb(255, 83, 83);
+}
+
+.form-control{
+    box-shadow: none;
+}

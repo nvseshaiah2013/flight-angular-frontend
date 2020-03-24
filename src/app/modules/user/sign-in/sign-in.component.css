@@ -1,0 +1,46 @@
+
+.container-fluid{
+    height:100vh;
+    background: radial-gradient(circle, rgb(255, 255, 255) 0%, rgba(255,255,255,1) 49%, rgba(208,247,255,1) 100%);
+    font-family: 'Sniglet', cursive;
+}
+
+input{
+    border:none;
+    border-bottom: 2px solid black;
+    outline: none;
+    background-color: transparent;
+    padding: 5px;
+   
+}
+
+input:focus {
+    animation: pulse 0.2s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+  }
+  
+  @keyframes pulse {
+    0% {
+      border-bottom: 2px solid #001F3F;
+    }
+    100% {
+        border-bottom: 2px solid rgb(54, 242, 255);
+    }
+  }
+
+.box{
+    border:2px solid black;
+    box-shadow: inset 0 1px 1px rgba(66, 3, 3, 0.075), 0 0 5px rgba(213, 255, 28, 0.795);
+}
+
+.m-6{
+    margin-top:20vh;
+}
+
+.card-header{
+    font-weight: 400;
+    border-bottom: 2px solid green;
+    border-radius: 5px;
+}

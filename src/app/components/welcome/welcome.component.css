@@ -8,10 +8,6 @@
     
 }
 
-@media(max-width:768px){
-
-}
-
 @keyframes text2 {
     0%, 50%, 100% {
       width: 0;
@@ -63,4 +59,8 @@
     50% {
       opacity: 1;
     }
+  }
+
+  a:hover{
+    zoom: 1.03;
   }

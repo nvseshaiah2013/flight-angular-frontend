@@ -1,0 +1,36 @@
+input{
+    border-bottom: 2px solid black;
+    border-top:none;
+    border-left: none;
+    border-right: none;
+    outline: none;
+    background-color: transparent;
+    padding:5px;
+   
+}
+
+
+input:focus{
+    border-bottom: 2px solid lightskyblue;
+    animation: ease-in 0.8s;
+}
+
+input:invalid{
+    border-bottom-style: 2px solid red;
+}
+
+.container-fluid{
+    height: 100vh;
+    background: radial-gradient(circle, rgb(255, 255, 255) 0%, rgba(255,255,255,1) 49%, rgba(208,247,255,1) 100%);
+    font-family: 'Sniglet', cursive;
+}
+
+.m-6{
+    margin-top:20vh;
+}
+
+.card-header{
+    font-weight: 400;
+    border-bottom: 2px solid green;
+    border-radius: 5px;
+}

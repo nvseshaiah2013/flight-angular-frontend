@@ -1,0 +1,15 @@
+.img-thumbnail{
+    width: 8rem;
+    height:auto;    
+}
+
+.btn-transparent:focus{
+    outline:none !important;
+}
+
+.card:hover{
+    border-color:#28a745;
+    zoom:0.9995;
+    animation-duration: 0.2s;
+    animation-timing-function: ease-in;
+}

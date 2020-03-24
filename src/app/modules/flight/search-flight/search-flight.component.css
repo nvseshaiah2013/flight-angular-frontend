@@ -1,0 +1,21 @@
+.form-control:focus{
+    box-shadow: none;
+}
+
+.form-control{
+    height:41px;
+}
+
+#search{
+   
+    vertical-align: middle;
+    background-color: rgb(228, 255, 131);
+    font-family: 'Sniglet', cursive;
+}
+
+input:hover{
+    border-color:#28a745;
+    zoom:0.9995;
+    animation-duration: 0.2s;
+    animation-timing-function: ease-in;
+}

@@ -1,0 +1,50 @@
+<div class="container-fluid">
+    <h3 class="card-header mb-3">
+        <span class="col-12 col-md-4 offset-md-4">
+
+            Add Passenger
+        </span>
+    </h3>
+    <div class="row">
+        <div class="col-12 col-md-10 offset-md-1">
+            <form [formGroup]="passengerForm" (ngSubmit)="addPassengerForm()">
+                <div class="form-group row">
+                    <label for="name" class="col-12 col-md-4 text-md-right">Name: </label>
+                    <input type="text" formControlName="name" id="name" class="form-control col-12 col-md-8" placeholder="Enter Name">
+                </div>
+                <div class="form-group row">
+                    <label for="age" class="col-12 col-md-4 text-md-right">Age: </label>
+                    <input type="text" formControlName="age" id="age" class="form-control col-12 col-md-8" placeholder="Enter Age">
+                </div>
+                <div class="form-group row">
+                    <label for="gender" class="col-12 col-md-4 text-md-right">Gender: </label>
+                    <select formControlName="gender" id="gender" class="form-control col-12 col-md-8">
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group row">
+                    <label for="idType" class="col-12 col-md-4 text-md-right">Type Of Id: </label>
+                    <select formControlName="idType" id="idType" class="form-control col-12 col-md-8">
+                        <option value="PAN">PAN Card</option>
+                        <option value="Aadhar">Aadhar Card</option>
+                        <option value="Passport">Passport</option>
+                        <option value="DL">Driving License</option>
+                    </select>
+                </div>
+                <div class="form-group row">
+                    <label for="idNo" class="col-12 col-md-4 text-md-right">Id Serial No. : </label>
+                    <input type="text" formControlName="idNo" id="idNo" class="form-control col-12 col-md-8" placeholder="Enter Id No.">
+                </div>
+                <div class="row col-12 col-md-6 offset-md-3 btn-group">
+
+                    <button type="submit" class="btn btn-primary"> Add Passenger </button>
+                    <button type="reset" class="btn btn-outline-danger">Reset</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>

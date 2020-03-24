@@ -1,0 +1,41 @@
+<div class="container-fluid">
+        <div class="row pt-5">
+            <div class="offset-md-3 col-12 col-md-6">
+                <form [formGroup]="signInForm" (ngSubmit)="signIn()" class="m-6">
+                    <h3 class="text-center mb-4 card-header">
+                        Create Account
+                    </h3>
+                  
+    
+                        <div class="form-group row">
+                            <label for="name" class="text-md-right col-10 col-md-3 d-none d-md-block">Name</label>
+                            <input type="text" class="offset-1 offset-md-0 col-10 col-md-7" formControlName="name" id="name" placeholder="Enter Name.">
+                        </div>
+                        <div class="form-group row">
+                            <label for="username" class="text-md-right col-10 col-md-3 d-none d-md-block">Username</label>
+                            <input type="text" class="offset-1 offset-md-0 col-10 col-md-7" formControlName="username" id="username" placeholder="Enter Username.">
+                        </div>
+                        <div class="form-group row">
+                            <label for="password" class="text-md-right col-10 col-md-3 d-none d-md-block">Password</label>
+                            <input type="password" formControlName="password" id="password" class="offset-1 offset-md-0 col-10 col-md-7" placeholder="Enter Password">
+                        </div>
+                        <div class="form-group row">
+                            <label for="age" class="text-md-right col-10 col-md-3 d-none d-md-block">Age</label>
+                            <input type="text" formControlName="age" id="age" class="offset-1 offset-md-0 col-10 col-md-7" placeholder="Enter Age.">
+                        </div>
+                        <div class="row">
+    
+                            <button type="submit" class="btn btn-info offset-1 col-10 offset-md-2 col-md-8 my-3">
+                                Create Account
+                            </button>
+                        </div>
+                        <div class="row my-3">
+                            <p class="text-muted offset-1 col-10 offset-md-0 col-md-6 text-md-right">
+                                Already Have an Account?
+                            </p>
+                            <a [routerLink]="'/user/login'" class="offset-1 col-10 offset-md-0 col-md-6 text-md-left">Login Here</a>
+                        </div>
+                </form>
+            </div>
+        </div>
+    </div>
