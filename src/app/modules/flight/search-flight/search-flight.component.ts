@@ -20,6 +20,7 @@ export class SearchFlightComponent implements OnInit {
   flights: Flight[] = [];
   constructor(private builder: FormBuilder, private service: FlightService) {
     this.getFlights();
+   
    }
 
   ngOnInit(): void {
@@ -35,8 +36,10 @@ export class SearchFlightComponent implements OnInit {
   getFlights() {
     this.service.getFlights().subscribe(data => {
       this.flights = data;
+      console.log(data);
     }, err => {
       console.log(err.stack);
     })
   }
+ 
 }

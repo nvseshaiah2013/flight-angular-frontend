@@ -23,6 +23,7 @@ export class UserService {
 
   logOutUser()
   {
-    
+    localStorage.removeItem('$F#R%S_ToKeN');
+    this.router.navigate(['/home'])
   }
 }

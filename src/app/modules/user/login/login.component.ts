@@ -28,8 +28,7 @@ export class LoginComponent implements OnInit {
     }
     this.service.loginUser(this.loginForm.controls.username.value,this.loginForm.controls.password.value)
     .subscribe(data=>{
-      console.log(data);
-      console.log('success');
+      localStorage.setItem('$F#R%S_ToKeN',data['jwt']);
       this.router.navigate(['/dashboard']);
 
     },err=>{

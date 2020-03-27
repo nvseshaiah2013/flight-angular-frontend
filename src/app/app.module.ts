@@ -13,7 +13,12 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { JwtModule } from '@auth0/angular-jwt';
 
+export function tokenGetter()
+{
+  return localStorage.getItem('$F#R%S_ToKeN');
+}
 
 @NgModule({
   declarations: [
@@ -32,7 +37,15 @@ import { FooterComponent } from './components/footer/footer.component';
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
-    NgbModule
+    NgbModule,
+    JwtModule.forRoot({
+      config:{
+        tokenGetter: tokenGetter,
+        whitelistedDomains:['localhost:8080'],
+        skipWhenExpired:true
+      }
+    })
+  
   ],
   providers: [],
   bootstrap: [AppComponent]
