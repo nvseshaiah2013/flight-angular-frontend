@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {faEllipsisH} from '@fortawesome/free-solid-svg-icons';
 import { UserService } from 'src/app/modules/user/user.service';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { Router } from '@angular/router';
 
 // const jwt = new JwtHelperService();
 
@@ -21,7 +22,11 @@ export class NavbarComponent implements OnInit {
     this.username = this.jwt.decodeToken(localStorage.getItem('$F#R%S_ToKeN')).sub.split('@')[0];
     
   }
- 
+   
+  logOut()
+  {
+    this.user.logOutUser();
+  }
 
 
 }

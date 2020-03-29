@@ -1,22 +1,26 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Flight } from '../../models/flight.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FlightService {
-  baseUrl = 'http://localhost:3000/flights';
+  baseUrl = 'http://localhost:8080/flights';
   constructor(private http:HttpClient) { }
 
-  getFlights()
-  {    
-    this.getSample();
-    return this.http.get<Flight[]>(this.baseUrl);
+  getFlights(source:string,destination:string,date)
+  {       
+    let selectedDate = new Date(date.year,date.month,date.day);
+    console.log(selectedDate.toISOString().split('T')[0]);    
+    return this.http.get<Flight[]>(this.baseUrl + `/all?source=${source}&destination=${destination}&date=${selectedDate.toISOString().split('T')[0]}`);
   }
-  getSample()
+
+  bookFlight(flight_code:string)
   {
-    this.http.post('http://localhost:8080/users/sample', {}).subscribe(data=>console.log(data),err=>console.log(err));
+    console.log(flight_code);
+    return this.http.post(this.baseUrl + '/book',{flight_code:flight_code});
   }
+ 
   
 }

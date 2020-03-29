@@ -19,7 +19,6 @@ export class SearchFlightComponent implements OnInit {
   model;
   flights: Flight[] = [];
   constructor(private builder: FormBuilder, private service: FlightService) {
-    this.getFlights();
    
    }
 
@@ -32,13 +31,22 @@ export class SearchFlightComponent implements OnInit {
   }
   searchFlight() {
     this.submitted = true;
+    if(this.searchFlightForm.invalid)
+    {
+      return;
+    }
+    console.log(this.searchFlightForm.value);
+    this.getFlights();
   }
   getFlights() {
-    this.service.getFlights().subscribe(data => {
+    let flightData = this.searchFlightForm.controls;
+    this.service.getFlights(flightData.source.value,
+       flightData.destination.value,
+        flightData.date.value).subscribe(data => {
       this.flights = data;
       console.log(data);
     }, err => {
-      console.log(err.stack);
+      console.log(err);
     })
   }
  

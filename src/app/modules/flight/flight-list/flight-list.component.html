@@ -1,5 +1,5 @@
 <div class="container-fluid">
-    <div class="row">
+    <div class="row mt-5">
         <div class="col-12 col-md-11" *ngIf="flightList; else noFlights">
             <div class="container my-3" *ngFor="let flight of flightList;">
                 <app-flight [flight]="flight"></app-flight>

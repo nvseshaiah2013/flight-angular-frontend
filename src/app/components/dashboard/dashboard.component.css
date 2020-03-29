@@ -1,3 +1,16 @@
 .container-fluid{
     font-family: 'Sniglet', cursive;
 }
+
+.sidenav{
+    width: auto;
+    /* position: fixed; */
+    padding:8px 0;
+   
+}
+
+.right-nav
+{
+    margin-left: 25%;
+    width: 75%;
+}

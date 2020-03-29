@@ -1,5 +1,4 @@
 export class Flight {
-    id:number;
     flight_code:string;
     source:string;
     destination:string;
@@ -7,4 +6,5 @@ export class Flight {
     price:number;
     checkinbaggage:number;
     cargobaggage:number;
+    vacant_seats:number;
 }

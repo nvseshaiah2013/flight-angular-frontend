@@ -31,7 +31,7 @@
                     <div class="card border-success">
                         <div class="card-header bg-success text-center text-white">Available Seats</div>
                         <div class="card-body">
-                            34
+                            {{ flight.vacant_seats }}
                         </div>
                     </div>
                 </div>
@@ -46,7 +46,7 @@
             View Details
             <fa-icon [icon]="faChevronDown"></fa-icon>
         </button>
-        <button class="btn btn-primary float-right">Book
+        <button class="btn btn-primary float-right" (click)="bookTicket(flight.flight_code)">Book
             <fa-icon [icon]="faThumbsUp" class="ml-2"></fa-icon>
         </button>
 

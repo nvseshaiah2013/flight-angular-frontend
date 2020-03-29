@@ -8,3 +8,13 @@
     background-color:  #28a745;
     zoom:0.999;
 } */
+
+.row{
+    overflow-y: scroll;
+    height: 100vh;
+}
+
+::-webkit-scrollbar{
+    width: 0px;
+    background: transparent;
+}

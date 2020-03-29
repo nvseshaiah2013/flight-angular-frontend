@@ -1,7 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 @import url('https://fonts.googleapis.com/css2?family=Oxygen&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Oxygen&family=Sniglet&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oxygen&family=Sniglet&display=swap'); 
 
 .lead{
     font-family: 'Oxygen', sans-serif;
