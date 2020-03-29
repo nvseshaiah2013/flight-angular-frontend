@@ -1,1 +1,32 @@
-<p>ticket works!</p>
+{{ticket | json }}
+
+<div class="container-fluid">
+    <div class="heading">
+        Ticket List
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="row box">
+        <div class="col-12 offset-md-1 col-md-10">
+            <div class="card-header header">
+
+                {{ ticket.flight.flight_name }}
+            </div>
+            <div class="card-body">
+
+            </div>
+                <div class="card-footer">
+              
+
+                        <button class="btn btn-primary mr-3">
+                            View Ticket
+                        </button>
+                        <button class="btn btn-success" (click)="cancelTicket(ticket)">
+                            Cancel Ticket 
+                        </button>
+                    
+                </div>
+        </div>
+        
+    </div>
+</div>

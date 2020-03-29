@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormGroup, FormBuilder, Validators} from '@angular/forms';
+import { FlightService } from '../flight.service';
 
 @Component({
   selector: 'app-payment',
@@ -8,7 +9,8 @@ import {FormGroup, FormBuilder, Validators} from '@angular/forms';
 })
 export class PaymentComponent implements OnInit {
   paymentForm:FormGroup;
-  constructor(private builder:FormBuilder) { }
+  submitted:boolean = false;
+  constructor(private builder:FormBuilder,private flightService:FlightService) { }
 
   ngOnInit() {
     this.paymentForm = this.builder.group({
@@ -19,5 +21,17 @@ export class PaymentComponent implements OnInit {
       cvv:['',[Validators.required]]
     })
   }
-  payForm(){}
+  payForm(){
+    this.submitted = true;
+    if(this.paymentForm.invalid)
+    {
+      return;
+    }
+    this.flightService.bookTicket()
+    .subscribe(data=>{
+      console.log(data);
+    },err=>{
+      console.log(err);
+    })
+  }
 }

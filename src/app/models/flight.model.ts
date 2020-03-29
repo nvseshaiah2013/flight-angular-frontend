@@ -7,4 +7,5 @@ export class Flight {
     checkinbaggage:number;
     cargobaggage:number;
     vacant_seats:number;
+    flight_name:string;
 }

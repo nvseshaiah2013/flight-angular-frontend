@@ -1,0 +1,27 @@
+.header{
+    border:none;
+    border-color: chartreuse;
+    border-bottom: 6px;
+    font-weight: 700;
+    text-decoration: wavy;
+    text-shadow: burlywood;
+    text-rendering: optimizeSpeed;
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+}
+
+.box{
+    border-radius: 3px;
+    border-color: rgb(157, 238, 92);
+    border:2px;
+}
+
+.heading{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-weight: bolder;
+    text-align: center;
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+    border-bottom: 3px solid greenyellow;
+    font-size: large;
+}

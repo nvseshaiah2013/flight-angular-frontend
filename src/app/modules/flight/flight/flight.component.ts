@@ -24,13 +24,8 @@ export class FlightComponent implements OnInit {
     this.show = !this.show;
   }
 
-  bookTicket(flight_code:string)
+  bookTicket(flight:Flight)
   {
-    this.flightService.bookFlight(flight_code).subscribe(data=>{
-      console.log(data);
-    },
-    err=>{
-      console.log(err);
-    })
+    this.flightService.bookFlight(flight);
   }
 }
