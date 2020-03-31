@@ -5,29 +5,120 @@
     <form [formGroup]="paymentForm" (ngSubmit)="payForm()" novalidate class="my-5">
         <div class="form-group row">
             <label for="name" class="col-12 col-md-2">Name On Card</label>
-            <input type="text" formControlName="name" id="name" placeholder="Enter Name." class="form-control col-md-10">
+            <div class="col-12 col-md-9">
+
+                <input type="text" formControlName="name" id="name" placeholder="Enter Name." class="form-control" />
+
+                <div *ngIf="submitted && paymentForm.controls.name.errors">
+                    <div *ngIf="submitted && paymentForm.controls.name.errors.required"
+                        class="mt-1 ml-2 badge badge-pill badge-danger">
+                        Name field is required !
+                    </div>
+                    <div class="mt-1 ml-2 badge badge-pill badge-danger"
+                        *ngIf="submitted && paymentForm.controls.name.errors.pattern">
+                        Name must contain characters only
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="form-group row">
             <label for="cardNo" class="col-12 col-md-2">Card No</label>
-            <input type="text" formControlName="cardNo" id="cardNo" placeholder="Enter Card Number" class="form-control col-12 col-md-10">
+            <div class="col-12 col-md-9">
+
+                <input type="text" formControlName="cardNo" id="cardNo" placeholder="Enter Card Number"
+                    class="form-control">
+                <div *ngIf="submitted && paymentForm.controls.cardNo.errors">
+                    <div class="mt-1 ml-2 badge badge-pill badge-danger"
+                        *ngIf="submitted && paymentForm.controls.cardNo.errors.required">
+                        Card Number is Required!
+                    </div>
+                    <div class="mt-1 ml-2 badge badge-pill badge-danger"
+                        *ngIf="submitted && paymentForm.controls.cardNo.errors.pattern">
+                        Card Must contain 16 digits
+                    </div>
+                </div>
+            </div>
+
         </div>
         <div class="form-group row">
-            
+
             <label for="date" class="col-12 col-md-2">Expiry Date </label>
 
+            <div class="col-12 col-md-9">
 
-            <input type="number" formControlName="month" id="month" placeholder="Month" class="form-control col-12 col-md-4">
-            <input type="number" formControlName="year" id="year" placeholder="year" class="form-control col-12 col-md-5 offset-md-1 mt-1 mt-md-0">
+                <div class="row">
+                    <div class="col-6">
+                        <div class="input-group">
+                        
+                            <div class="input-group-prepend">
+                                <label class="input-group-text" for="month">
+                                    Month
+                                </label>
+                            </div>
+                            <select formControlName="month" id="month" class="form-control">
+                                <option [ngValue]="m.value" *ngFor="let m of months;">{{m.name}}</option>
+                            </select>
+                        </div>
+                                <div *ngIf="submitted && paymentForm.controls.month.errors">
+                                    <div class="mt-1 ml-1 badge badge-pill badge-danger"
+                                        *ngIf="submitted && paymentForm.controls.month.errors.required">
+                                        Expiry month is Required!
+                                    </div>
+                                </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="input-group">
+                        
+                            <div class="input-group-prepend">
+                                <label class="input-group-text" for="year">
+                                    Year
+                                </label>
+                            </div>
+                            <select formControlName="year" id="year" class="form-control">
+                                <option *ngFor="let year of years;" value={{year.value}}>{{year.name}}</option>
+                            </select>
+                        </div>
+                                <div *ngIf="submitted && paymentForm.controls.year.errors">
+                                    <div class="mt-1 ml-1 badge badge-pill badge-danger"
+                                        *ngIf="submitted && paymentForm.controls.year.errors.required">
+                                        Expiry year is Required!
+                                    </div>
+                                </div>
+                    </div>
+                </div>
+               
+
+                
+            </div>
 
         </div>
         <div class="form-group row">
             <label for="cvv" class="col-md-2 col-12">CVV Number</label>
-            <input type="text" formControlName="cvv" id="cvv" placeholder="Enter CVV" class="form-control col-12 col-md-10">
-        </div>
-        <div class="btn-group btn-block">
+            <div class="col-md-9 col-12">
+                <div class="input-group">
 
-            <button type="submit" class="btn btn-outline-success">Pay Amount </button>
-            <button type="reset" class="btn btn-danger">Reset</button>
+                    <input type="text" formControlName="cvv" id="cvv" placeholder="Enter CVV" class="form-control" />
+                    <div class="input-group-append">
+                        <button type="button" class="btn btn-secondary" placement="left" popoverTitle="What is CVV?"
+                            ngbPopover="CVV is a 3 digit secret code found behind the debit card"> ? </button>
+                    </div>
+                </div>
+                <div *ngIf="submitted && paymentForm.controls.cvv.errors">
+                    <div class="ml-2 mt-1 badge badge-pill badge-danger"
+                        *ngIf="submitted && paymentForm.controls.cvv.errors.required">
+                        CVV is Required
+                    </div>
+                    <div class="ml-2 mt-1 badge badge-pill badge-danger"
+                        *ngIf="submitted && paymentForm.controls.cvv.errors.pattern">
+                        CVV must be of 3 Digits
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="btn-group btn-block mt-5">
+
+            <button type="submit" class="btn btn-success">Pay Amount </button>
+            <button type="reset" class="btn btn-outline-danger" (click)="submitted = false">Reset</button>
         </div>
     </form>
 </div>

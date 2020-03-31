@@ -1,31 +1,46 @@
-{{ticket | json }}
+<!-- {{ticket | json }} -->
 
-<div class="container-fluid">
-    <div class="heading">
-        Ticket List
-    </div>
-</div>
-<div class="container-fluid">
-    <div class="row box">
+
+<div class="container my-3">
+    <div class="row">
         <div class="col-12 offset-md-1 col-md-10">
-            <div class="card-header header">
+            <div class="box">
 
-                {{ ticket.flight.flight_name }}
-            </div>
-            <div class="card-body">
-
-            </div>
-                <div class="card-footer">
-              
-
-                        <button class="btn btn-primary mr-3">
-                            View Ticket
-                        </button>
-                        <button class="btn btn-success" (click)="cancelTicket(ticket)">
-                            Cancel Ticket 
-                        </button>
+                <div class="card-header header">
+    
+                    {{ ticket.flight.flight_name }}
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12 col-md-6">
+                            <p class="lead">Ticket Id: {{ticket.ticket_id }}</p>
+                            <p class="lead">Source : {{ ticket.flight.source }}</p>
+                            <p class="lead">Destination : {{ ticket.flight.destination }} </p>
+                            <p class="lead">Status: {{ticket.status }}</p>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <p class="lead">Price: {{ticket.flight.price }}</p>
+                            <p class="lead">Boarding Date: {{ticket.flight.date | date:'fullDate'}}</p>
+                            <p class="lead">Boarding Time: {{ticket.flight.date | date:'shortTime'}}</p>
+                            <p class="lead">CheckIn Baggage : {{ticket.flight.checkinbaggage}}</p>
+                            <p class="lead">Cargo Baggage: {{ticket.flight.cargobaggage}}</p>
+                        </div>
+    
+                    </div>
                     
                 </div>
+                    <div class="card-footer">
+                  
+    
+                            <button class="btn btn-primary mr-3">
+                                View Ticket
+                            </button>
+                            <button class="btn btn-success" (click)="cancelTicket(ticket)">
+                                Cancel Ticket 
+                            </button>
+                        
+                    </div>
+            </div>
         </div>
         
     </div>

@@ -10,6 +10,18 @@
     border:2px solid rgb(255, 83, 83);
 }
 
+.ng-dirty.ng-invalid:not(form){
+    border:2px solid rgb(255,83,83);
+}
+
+
+
 .form-control{
     box-shadow: none;
+}
+
+.badge-danger{
+    letter-spacing: 1.5px;
+    font-weight: 600;
+    padding:3px 10px; 
 }

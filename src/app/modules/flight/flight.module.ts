@@ -17,7 +17,15 @@ import { FlightListComponent } from './flight-list/flight-list.component';
 
 
 @NgModule({
-  declarations: [SearchFlightComponent, FlightComponent, SelectedFlightComponent, PassengerDetailComponent, PaymentComponent, PaymentSuccessComponent, ViewTicketComponent, FlightListComponent],
+  declarations: [
+    SearchFlightComponent, 
+    FlightComponent,
+    PassengerDetailComponent,
+    SelectedFlightComponent,
+    PaymentComponent, 
+    PaymentSuccessComponent, 
+    ViewTicketComponent, 
+    FlightListComponent],
   imports: [
     CommonModule,
     FlightRoutingModule,
@@ -25,6 +33,7 @@ import { FlightListComponent } from './flight-list/flight-list.component';
     ReactiveFormsModule,
     NgbModule,
     HttpClientModule
-  ]
+  ],
+  entryComponents:[SelectedFlightComponent,PaymentSuccessComponent]
 })
 export class FlightModule { }

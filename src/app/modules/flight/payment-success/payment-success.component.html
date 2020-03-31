@@ -1,1 +1,19 @@
-<p>payment-success works!</p>
+<div class="container-fluid">
+    <div class="modal-header text-success text-center">
+        Payment Status
+        <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+            <span aria-hidden="true">
+                <fa-icon [icon]="faDoorClosed"></fa-icon>
+            </span>
+        </button>
+    </div>
+    <div class="modal-body">
+
+        <h2 class="lead">
+            Payment SuccessFul. <fa-icon [icon]="faCheckCircle" class="text-success"></fa-icon>
+        </h2>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-primary">View Ticket</button>
+    </div>
+</div>

@@ -2,16 +2,19 @@
     <div class="row">
         <div class="col-12">
             <div class="side-card d-none d-md-block">
-                <img src="assets/images/profile.png" alt="" srcset="" class="img-fluid">
-                <div class="p-1">
+                <img src="assets/images/profile.png" alt="Profile Photo" class="img-fluid pb-3">
+                <hr>
+                <div class="p-1" *ngIf="currentUser">
 
                     <div class="font-weight-bold fit-content pl-1">
-                        Name
+                        {{ currentUser.name  }}
                     </div>
                     <div class="text-muted fit-content pl-1">
-                        Username@mail.com
+                        {{ currentUser.username  }}
                     </div>
-                    <div class="fit-content pl-1">Age</div>
+                    <div class="fit-content pl-1">
+                        {{currentUser.age  }} years on <fa-icon [icon]="faGlobeAsia"></fa-icon>
+                    </div>
                 </div>
             </div>
         </div>

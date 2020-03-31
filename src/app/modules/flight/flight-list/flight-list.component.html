@@ -1,12 +1,19 @@
 <div class="container-fluid">
     <div class="row mt-5">
-        <div class="col-12 col-md-11" *ngIf="flightList; else noFlights">
+        <div class="col-12 col-md-11" *ngIf="flightList;">
             <div class="container my-3" *ngFor="let flight of flightList;">
-                <app-flight [flight]="flight"></app-flight>
+                <app-flight [flight]="flight" (chooseFlight)="choosenFlight($event)"></app-flight>
+            </div>
+            <div class="container" *ngIf="searched && flightList.length == 0">
+                No Flights Found
+            </div>        
+            <div class="container text-center" *ngIf="!searched && flightList.length == 0" style="min-height: 40vh;">
+                <h2 class="lead custom mt-5">Go Ahead</h2>
+                <h3 class="lead custom">Search For Flight</h3>
+                <fa-icon [icon]="faSearch" class="lead custom"></fa-icon>
             </div>
         </div> 
-        <ng-template #noFlights>
-            No Flights Found
-        </ng-template>        
     </div>
 </div>
+
+<!-- <app-selected-flight [flight]="selectedFlight"></app-selected-flight> -->

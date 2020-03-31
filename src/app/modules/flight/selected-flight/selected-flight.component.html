@@ -1,1 +1,35 @@
-<p>selected-flight works!</p>
+<div class="container" *ngIf="flight">
+    <div class="modal-header">
+        <h3 class="modal-title">
+            {{ flight.flight_name }} - 
+            <span class="badge badge-pill badge-primary">
+                                Economy
+            </span> 
+        </h3>
+        <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+            <span aria-hidden="true">
+                <fa-icon [icon]="faDoorClosed"></fa-icon>
+            </span>
+        </button>
+    </div>
+
+    <div class="modal-body">
+        
+        Date : {{ flight.date | date:'longDate'}}
+        Time : {{ flight.date | date:'shortTime'}} 
+    </div>
+
+    <div class="modal-footer">
+
+        <button type="button" class="btn btn-success btn-block" ngbAutoFocus (click)="onContinue()">
+            Continue Rs. {{ flight.price }}
+        </button>
+
+    </div>
+
+
+
+</div>
+
+
+<!-- <div class="modal-background"></div> -->

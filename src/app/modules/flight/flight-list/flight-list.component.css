@@ -4,17 +4,45 @@
     
     font-family: 'Sniglet', cursive;
 }
-/* .container:hover{
-    background-color:  #28a745;
-    zoom:0.999;
-} */
 
 .row{
     overflow-y: scroll;
-    height: 100vh;
+    max-height: 100vh;
 }
 
 ::-webkit-scrollbar{
     width: 0px;
     background: transparent;
+}
+
+@keyframes zoomer{
+    0%{
+        
+        font-size:medium;
+       
+    }
+    25%{
+        font-size: large;
+    }
+    50%{
+        font-size:larger;
+        font-weight: 500;
+        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+         
+    }
+    75%{
+       font-size:x-large;
+       font-weight: bolder;
+     
+    }
+    100%{
+        font-size:xx-large;        
+        font-family: 'Times New Roman', Times, serif;
+    }
+}
+
+.custom{    
+   will-change: font-size, font-family;
+   animation: zoomer 1.5s infinite;
+   animation-timing-function: ease-in-out;    
 }

@@ -1,15 +1,40 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ViewEncapsulation, ElementRef, Input, OnInit, OnChanges,OnDestroy, SimpleChanges } from '@angular/core';
+import { Flight } from 'src/app/models/flight.model';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { faWindowClose } from '@fortawesome/free-solid-svg-icons';
+import { FlightService } from '../flight.service';
 
 @Component({
   selector: 'app-selected-flight',
   templateUrl: './selected-flight.component.html',
-  styleUrls: ['./selected-flight.component.css']
+  styleUrls: ['./selected-flight.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
-export class SelectedFlightComponent implements OnInit {
+export class SelectedFlightComponent implements OnInit,OnChanges,OnDestroy {
 
-  constructor() { }
+  @Input('flight') flight:Flight;
+  faDoorClosed = faWindowClose;
+  
+  constructor(private service:FlightService,public activeModal:NgbActiveModal) {
+     
+   }
 
   ngOnInit() {
+      
+      
+  } 
+
+
+  ngOnDestroy(){
+    
   }
 
+  ngOnChanges(changes:SimpleChanges){
+    
+  }
+  onContinue()
+  {
+    this.activeModal.close();
+    this.service.bookFlight(this.flight);
+  }
 }

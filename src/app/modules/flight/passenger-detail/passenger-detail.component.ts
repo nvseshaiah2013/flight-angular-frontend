@@ -15,12 +15,13 @@ export class PassengerDetailComponent implements OnInit {
 
   ngOnInit() {
     this.passengerForm = this.builder.group({
-      name:['',Validators.required],
-      age:['',Validators.required],
+      name:['',[Validators.required,Validators.pattern("[a-zA-Z ]{2,}")]],
+      age:['',[Validators.required,Validators.pattern("[0-9]{1,}"),Validators.min(5),Validators.max(120)]],
       gender:['',Validators.required],
       idType:['',Validators.required],
-      idNo:['',Validators.required]
+      idNo:['',[Validators.required,Validators.pattern("[A-Za-z0-9]{5,}")]]
     });
+    
   }
   addPassengerForm(){
     this.submitted = true;

@@ -17,7 +17,8 @@ export class SearchFlightComponent implements OnInit {
   faPlaneArrival = faPlaneArrival;
   submitted: boolean = true;
   model;
-  flights: Flight[] = [];
+  flights: Flight[] =[];
+  searched:boolean =false;
   constructor(private builder: FormBuilder, private service: FlightService) {
    
    }
@@ -36,6 +37,7 @@ export class SearchFlightComponent implements OnInit {
       return;
     }
     console.log(this.searchFlightForm.value);
+    this.searched = true;
     this.getFlights();
   }
   getFlights() {

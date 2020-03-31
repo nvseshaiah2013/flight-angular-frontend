@@ -10,7 +10,6 @@ export class UserService {
 
   private baseUrl = 'http://localhost:8080/users';
   constructor(private http:HttpClient,private router:Router) { }
-
   addUser(user:User)
   {
     return this.http.post(this.baseUrl + '/add',user);
@@ -26,4 +25,13 @@ export class UserService {
     localStorage.removeItem('$F#R%S_ToKeN');
     this.router.navigate(['/home'])
   }
+
+  
+
+  getUser()
+  {
+    
+    return this.http.post(this.baseUrl + '/getUser',{});
+  }
+
 }

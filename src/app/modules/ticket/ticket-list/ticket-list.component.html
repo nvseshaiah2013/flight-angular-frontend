@@ -1,4 +1,10 @@
 <div class="container-fluid">
+    <h2 class="heading">
+        Ticket List
+    </h2>
+</div>
+
+<div class="container-fluid mt-5">
     <div class="row">
         <div class="col-12" *ngFor="let ticket of this.getTicketList();">
             <app-ticket [ticket]="ticket"></app-ticket>

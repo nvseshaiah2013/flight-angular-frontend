@@ -25,6 +25,7 @@ input:focus {
     0% {
       border-bottom: 2px solid #001F3F;
     }
+    
     100% {
         border-bottom: 2px solid rgb(54, 242, 255);
     }
