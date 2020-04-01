@@ -1,41 +1,91 @@
 <div class="container-fluid">
-        <div class="row pt-5">
-            <div class="offset-md-3 col-12 col-md-6">
-                <form [formGroup]="signInForm" (ngSubmit)="signIn()" class="m-6">
-                    <h3 class="text-center mb-4 card-header">
+    <div class="row">
+        <div class="offset-md-3 col-12 col-md-6">
+            <form [formGroup]="signInForm" (ngSubmit)="signIn()" class="m-6" novalidate>
+                <h3 class="text-center mb-4 card-header">
+                    Create Account
+                </h3>
+
+
+                <div class="form-group row">
+                    <label for="name" class="text-md-right col-10 col-md-3 d-none d-md-block">Name</label>
+                    <div class="offset-1 offset-md-0 col-10 col-md-7">
+                        <input type="text" formControlName="name" id="name" placeholder="Enter Name.">
+                        <div
+                            *ngIf="(signInForm.controls.name.touched || signInForm.controls.name.dirty || submitted) && signInForm.controls.name.errors">
+                            <div class="badge badge-danger badge-pill" *ngIf="signInForm.controls.name.errors.required">
+                                Name is a Required Field!
+                            </div>
+                            <div class="badge badge-danger badge-pill" *ngIf="signInForm.controls.name.errors.pattern">
+                                Name must only contain characters.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="username" class="text-md-right col-10 col-md-3 d-none d-md-block">Username</label>
+                    <div class="offset-1 offset-md-0 col-10 col-md-7">
+                        <input type="text" formControlName="username" id="username" placeholder="Enter Username.">
+                        <div
+                            *ngIf="(signInForm.controls.username.touched || signInForm.controls.username.dirty || submitted) && signInForm.controls.username.errors">
+                            <div class="badge badge-danger badge-pill"
+                                *ngIf="signInForm.controls.username.errors.required">
+                                Username is a Required Field!
+                            </div>
+                            <div class="badge badge-danger badge-pill"
+                                *ngIf="signInForm.controls.username.errors.email">
+                                Username must be a E-mail!
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="password" class="text-md-right col-10 col-md-3 d-none d-md-block">Password</label>
+                    <div class="offset-1 offset-md-0 col-10 col-md-7">
+                        <input type="password" formControlName="password" id="password" placeholder="Enter Password">
+
+                        <div
+                            *ngIf="(signInForm.controls.password.touched || signInForm.controls.password.dirty || submitted) && signInForm.controls.password.errors">
+                            <div class="badge badge-danger badge-pill"
+                                *ngIf="signInForm.controls.password.errors.required">
+                                Password is a Required Field!
+                            </div>
+                            <div class="badge badge-danger badge-pill"
+                                *ngIf="signInForm.controls.password.errors.minlength" aria-autocomplete="none">
+                                Password should be of 8 characters!
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="age" class="text-md-right col-10 col-md-3 d-none d-md-block">Age</label>
+                    <div class="offset-1 offset-md-0 col-10 col-md-7">
+                        <input type="text" formControlName="age" id="age" placeholder="Enter Age.">
+                        <div
+                            *ngIf="(signInForm.controls.age.touched || signInForm.controls.age.dirty || submitted) && signInForm.controls.age.errors">
+                            <div class="badge badge-danger badge-pill" *ngIf="signInForm.controls.age.errors.required">
+                                Age is a Required Field!
+                            </div>
+                            <div class="badge badge-danger badge-pill" *ngIf="signInForm.controls.age.errors.pattern">
+                                Age should be between 10 and 99!
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+
+                    <button type="submit" class="btn btn-info offset-1 col-10 offset-md-2 col-md-8 my-3">
                         Create Account
-                    </h3>
-                  
-    
-                        <div class="form-group row">
-                            <label for="name" class="text-md-right col-10 col-md-3 d-none d-md-block">Name</label>
-                            <input type="text" class="offset-1 offset-md-0 col-10 col-md-7" formControlName="name" id="name" placeholder="Enter Name.">
-                        </div>
-                        <div class="form-group row">
-                            <label for="username" class="text-md-right col-10 col-md-3 d-none d-md-block">Username</label>
-                            <input type="text" class="offset-1 offset-md-0 col-10 col-md-7" formControlName="username" id="username" placeholder="Enter Username.">
-                        </div>
-                        <div class="form-group row">
-                            <label for="password" class="text-md-right col-10 col-md-3 d-none d-md-block">Password</label>
-                            <input type="password" formControlName="password" id="password" class="offset-1 offset-md-0 col-10 col-md-7" placeholder="Enter Password">
-                        </div>
-                        <div class="form-group row">
-                            <label for="age" class="text-md-right col-10 col-md-3 d-none d-md-block">Age</label>
-                            <input type="text" formControlName="age" id="age" class="offset-1 offset-md-0 col-10 col-md-7" placeholder="Enter Age.">
-                        </div>
-                        <div class="row">
-    
-                            <button type="submit" class="btn btn-info offset-1 col-10 offset-md-2 col-md-8 my-3">
-                                Create Account
-                            </button>
-                        </div>
-                        <div class="row my-3">
-                            <p class="text-muted offset-1 col-10 offset-md-0 col-md-6 text-md-right">
-                                Already Have an Account?
-                            </p>
-                            <a [routerLink]="'/user/login'" class="offset-1 col-10 offset-md-0 col-md-6 text-md-left">Login Here</a>
-                        </div>
-                </form>
-            </div>
+                    </button>
+                </div>
+                <div class="row my-3">
+                    <p class="text-muted offset-1 col-10 offset-md-0 col-md-6 text-md-right">
+                        Already Have an Account?
+                    </p>
+                    <a [routerLink]="'/user/login'" class="offset-1 col-10 offset-md-0 col-md-6 text-md-left">Login
+                        Here</a>
+                </div>
+            </form>
         </div>
     </div>
+</div>

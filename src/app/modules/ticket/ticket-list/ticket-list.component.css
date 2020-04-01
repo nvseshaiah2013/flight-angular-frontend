@@ -2,9 +2,20 @@
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     font-weight: bolder;
     text-align: center;
-    border-top-left-radius: 1rem;
-    border-top-right-radius: 1rem;
-    border-bottom: 5px solid greenyellow;
-    font-size: larger;
+    border-radius: 1rem;
     padding:5px;
+}
+
+.row{
+    overflow-y: scroll;
+    max-height: 100vh;
+}
+
+::-webkit-scrollbar{
+    width: 0px;
+    background: transparent;
+}
+
+.nav-item{
+    border-radius: 1rem;
 }

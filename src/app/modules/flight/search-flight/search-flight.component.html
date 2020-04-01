@@ -11,6 +11,14 @@
                     </div>
                     <input type="text" formControlName="source" id="source" placeholder="Enter Source" class="form-control">
                 </div>
+                <div *ngIf="(searchFlightForm.controls.source.touched || searchFlightForm.controls.source.dirty || submitted) && searchFlightForm.controls.source.errors">
+                    <div class="badge badge-pill badge-danger" *ngIf="searchFlightForm.controls.source.errors.required">
+                        Source is required!
+                    </div>
+                    <div class="badge badge-pill badge-danger" *ngIf="searchFlightForm.controls.source.errors.pattern">
+                        Source can only contain characters.
+                    </div>
+                </div>
             </div>
             <div class="col-12 col-md-3  my-2">
                 <div class="input-group">
@@ -21,6 +29,15 @@
                         </div>
                     </div>
                     <input type="text" formControlName="destination" id="destination" placeholder="Enter Destination" class="form-control">
+                </div>
+                <div
+                    *ngIf="(searchFlightForm.controls.destination.touched || searchFlightForm.controls.destination.dirty || submitted) && searchFlightForm.controls.destination.errors">
+                    <div class="badge badge-pill badge-danger" *ngIf="searchFlightForm.controls.destination.errors.required">
+                        Destination is required!
+                    </div>
+                    <div class="badge badge-pill badge-danger" *ngIf="searchFlightForm.controls.destination.errors.pattern">
+                        Destination can only contain characters.
+                    </div>
                 </div>
             </div>
             <div class="col-12 col-md-3 my-2">
@@ -33,12 +50,20 @@
                     </div>
                     <input class="form-control" placeholder="Enter Date(yyyy-mm-dd)" formControlName="date" ngbDatepicker #d="ngbDatepicker">
                 </div>
+                <div
+                    *ngIf="(searchFlightForm.controls.date.touched || searchFlightForm.controls.date.dirty || submitted) && searchFlightForm.controls.date.errors">
+                    <div class="badge badge-pill badge-danger" *ngIf="searchFlightForm.controls.date.errors.required">
+                        Date is required!
+                    </div>
+                    <div class="badge badge-pill badge-danger" *ngIf="searchFlightForm.controls.date.errors.invalidDate">
+                        Date must follow format (yyyy-mm-dd)
+                    </div>
+                </div>
             </div>
             <div class="col-12 col-md-3  my-2">
 
                 <button type="submit" class="btn btn-info btn-block">
                     <span class="lead">
-
                         Search
                     </span>
                     <fa-icon [icon]="faSearchLocation"></fa-icon>

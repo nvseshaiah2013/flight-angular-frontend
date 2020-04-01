@@ -1,7 +1,7 @@
 <div class="container-fluid">
     <div class="modal-header text-success text-center">
         Payment Status
-        <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+        <button type="button" class="close" aria-label="Close" (click)="close()">
             <span aria-hidden="true">
                 <fa-icon [icon]="faDoorClosed"></fa-icon>
             </span>
@@ -14,6 +14,6 @@
         </h2>
     </div>
     <div class="modal-footer">
-        <button type="button" class="btn btn-outline-primary">View Ticket</button>
+        <button type="button" class="btn btn-outline-primary" (click)="viewTicket()">View Ticket</button>
     </div>
 </div>

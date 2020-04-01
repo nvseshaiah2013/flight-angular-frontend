@@ -13,7 +13,7 @@
             <div class="col-12 col-md-9">
                 <input type="text" formControlName="name" id="name" class="form-control" placeholder="Enter Name" />
                 <div
-                    *ngIf="(passengerForm.controls.name.dirty || passengerForm.controls.name.touched) && passengerForm.controls.name.errors">
+                    *ngIf="(passengerForm.controls.name.dirty || passengerForm.controls.name.touched || submitted) && passengerForm.controls.name.errors">
                     <div class="badge badge-pill badge-danger" *ngIf="passengerForm.controls.name.errors.required">
                         Name is Required!
                     </div>
@@ -28,7 +28,7 @@
             <div class="col-12 col-md-9">
                 <input type="text" formControlName="age" id="age" class="form-control" placeholder="Enter Age">
                 <div
-                    *ngIf="(passengerForm.controls.age.dirty || passengerForm.controls.age.touched) && passengerForm.controls.age.errors">
+                    *ngIf="(passengerForm.controls.age.dirty || passengerForm.controls.age.touched || submitted) && passengerForm.controls.age.errors">
                     <div class="badge badge-pill badge-danger" *ngIf="passengerForm.controls.age.errors.required">
                         Age is Required!
                     </div>
@@ -54,7 +54,7 @@
                     <option value="Other">Other</option>
                 </select>
                 <div
-                    *ngIf="(passengerForm.controls.gender.dirty || passengerForm.controls.gender.touched) && passengerForm.controls.gender.errors">
+                    *ngIf="(passengerForm.controls.gender.dirty || passengerForm.controls.gender.touched || submitted) && passengerForm.controls.gender.errors">
                     <div class="badge badge-pill badge-danger" *ngIf="passengerForm.controls.gender.errors.required">
                         Gender should be selected!
                     </div>
@@ -72,7 +72,7 @@
                     <option value="Passport">Passport</option>
                     <option value="DL">Driving License</option>
                 </select>
-                <div *ngIf="(passengerForm.controls.idType.dirty || passengerForm.controls.idType.touched) &&
+                <div *ngIf="(passengerForm.controls.idType.dirty || passengerForm.controls.idType.touched || submitted) &&
                     passengerForm.controls.idType.errors">
                     <div class="badge badge-pill badge-danger" *ngIf="passengerForm.controls.idType.errors.required">
                         Id Type Should be selected!
@@ -85,7 +85,7 @@
             <div class="col-12 col-md-9">
 
                 <input type="text" formControlName="idNo" id="idNo" class="form-control" placeholder="Enter Id No." />
-                <div *ngIf="(passengerForm.controls.idNo.dirty || passengerForm.controls.idNo.touched) &&
+                <div *ngIf="(passengerForm.controls.idNo.dirty || passengerForm.controls.idNo.touched || submitted) &&
                                     passengerForm.controls.idNo.errors">
                     <div class="badge badge-pill badge-danger" *ngIf="passengerForm.controls.idNo.errors.required">
                         Id Number is Required!

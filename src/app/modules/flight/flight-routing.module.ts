@@ -8,6 +8,7 @@ import { ViewTicketComponent } from './view-ticket/view-ticket.component';
 import { PassengerDetailComponent } from './passenger-detail/passenger-detail.component';
 import { BookingGaurdService } from './services/booking-gaurd.service';
 import { PaymentGuardService } from './services/payment-guard.service';
+import { TicketGaurdService } from './services/ticket-gaurd.service';
 
 
 const routes: Routes = [{
@@ -17,7 +18,7 @@ const routes: Routes = [{
     {path:'temp',component:PassengerDetailComponent},
     {path:'payment',component:PaymentComponent,canActivate:[PaymentGuardService]},
     {path:'payment-success',component:PaymentSuccessComponent},
-    {path:'view-ticket',component:ViewTicketComponent},
+    {path:'view-ticket',component:ViewTicketComponent,canActivate:[TicketGaurdService]},
     {path:'passenger-detail',component:PassengerDetailComponent,canActivate:[BookingGaurdService]}
   ]
 }];

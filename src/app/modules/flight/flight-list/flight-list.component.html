@@ -5,7 +5,13 @@
                 <app-flight [flight]="flight" (chooseFlight)="choosenFlight($event)"></app-flight>
             </div>
             <div class="container" *ngIf="searched && flightList.length == 0">
-                No Flights Found
+                <p class="display-3 text-center mt-5">
+                    <fa-icon [icon]="faThumbsDown" class="text-danger"></fa-icon>
+                    No Flights Found
+                </p>
+                <p class="lead text-center display-4 mb-5">
+                    Try Searching Again <fa-icon [icon]="faSearch" class="text-info"></fa-icon>
+                </p>
             </div>        
             <div class="container text-center" *ngIf="!searched && flightList.length == 0" style="min-height: 40vh;">
                 <h2 class="lead custom mt-5">Go Ahead</h2>

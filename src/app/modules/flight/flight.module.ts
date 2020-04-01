@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FlightRoutingModule } from './flight-routing.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ReactiveFormsModule } from '@angular/forms';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule, NgbDateAdapter, NgbDateNativeAdapter } from '@ng-bootstrap/ng-bootstrap';
 
 import { SearchFlightComponent } from './search-flight/search-flight.component';
 import { FlightComponent } from './flight/flight.component';
@@ -34,6 +34,7 @@ import { FlightListComponent } from './flight-list/flight-list.component';
     NgbModule,
     HttpClientModule
   ],
-  entryComponents:[SelectedFlightComponent,PaymentSuccessComponent]
+  entryComponents:[SelectedFlightComponent,PaymentSuccessComponent],
+  providers:[]
 })
 export class FlightModule { }

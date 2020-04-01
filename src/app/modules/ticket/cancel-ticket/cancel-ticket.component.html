@@ -1,1 +1,37 @@
-<p>cancel-ticket works!</p>
+<div class="container-fluid">
+    <div class="modal-header text-danger font-weight-bold">
+        <h2 class="lead">
+
+            Want To Cancel Ticket ?
+        </h2>
+        <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+            <span aria-hidden="true">
+                <fa-icon [icon]="faDoorClosed"></fa-icon>
+            </span>
+        </button>
+    </div>
+    <div class="modal-body">
+            <div class="row">
+                <div class="col-12 col-md-6">
+                    <p class="lead">Ticket Id: {{ticket.ticket_id }}</p>
+                    <p class="lead">Source : {{ ticket.flight.source }}</p>
+                    <p class="lead">Destination : {{ ticket.flight.destination }} </p>
+                    <p class="lead">Status: {{ticket.status }}</p>
+                </div>
+                <div class="col-12 col-md-6">
+                    <p class="lead">Price: {{ticket.flight.price }}</p>
+                    <p class="lead">Boarding Date: {{ticket.flight.date | date:'fullDate'}}</p>
+                    <p class="lead">Boarding Time: {{ticket.flight.date | date:'shortTime'}}</p>
+                    <p class="lead">CheckIn Baggage : {{ticket.flight.checkinbaggage}}</p>
+                    <p class="lead">Cargo Baggage: {{ticket.flight.cargobaggage}}</p>
+                </div>
+            
+            </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-danger btn-lg" (click)="cancelTicket()"> 
+            Cancel Ticket
+        </button>
+
+    </div>
+</div>

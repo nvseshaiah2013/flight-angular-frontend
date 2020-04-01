@@ -16,8 +16,8 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.loginForm = this.builder.group({
-      username:['',Validators.required],
-      password:['',Validators.required]
+      username:['',[Validators.required,Validators.email]],
+      password:['',[Validators.required]]
     })
   }
   login():any{
@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
     this.service.loginUser(this.loginForm.controls.username.value,this.loginForm.controls.password.value)
     .subscribe(data=>{
       localStorage.setItem('$F#R%S_ToKeN',data['jwt']);
-      this.router.navigate(['/dashboard']);
+      this.router.navigate(['/dashboard/search-flight']);
 
     },err=>{
       console.log(err);

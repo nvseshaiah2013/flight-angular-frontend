@@ -6,10 +6,10 @@
         <div class="col-12 offset-md-1 col-md-10">
             <div class="box">
 
-                <div class="card-header header">
+                <h3 class="card-header header text-center bg-dark text-white">
     
                     {{ ticket.flight.flight_name }}
-                </div>
+                </h3>
                 <div class="card-body">
                     <div class="row">
                         <div class="col-12 col-md-6">
@@ -19,7 +19,7 @@
                             <p class="lead">Status: {{ticket.status }}</p>
                         </div>
                         <div class="col-12 col-md-6">
-                            <p class="lead">Price: {{ticket.flight.price }}</p>
+                            <p class="lead">Price: <fa-icon [icon]="faRupeeSign"></fa-icon> {{ticket.flight.price }}</p>
                             <p class="lead">Boarding Date: {{ticket.flight.date | date:'fullDate'}}</p>
                             <p class="lead">Boarding Time: {{ticket.flight.date | date:'shortTime'}}</p>
                             <p class="lead">CheckIn Baggage : {{ticket.flight.checkinbaggage}}</p>
@@ -32,10 +32,10 @@
                     <div class="card-footer">
                   
     
-                            <button class="btn btn-primary mr-3">
+                            <button class="btn btn-primary mr-3" (click)="viewTicket()">
                                 View Ticket
                             </button>
-                            <button class="btn btn-success" (click)="cancelTicket(ticket)">
+                            <button class="btn btn-success" (click)="openModal()" *ngIf="ticket.status == 'Booked'">
                                 Cancel Ticket 
                             </button>
                         

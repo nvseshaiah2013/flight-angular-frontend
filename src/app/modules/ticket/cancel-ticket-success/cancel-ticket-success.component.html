@@ -1,1 +1,28 @@
-<p>cancel-ticket-success works!</p>
+<div class="container">
+
+    <div class="card-header bg-dark">
+        <h2>
+            <p class="lead text-danger">
+                Ticket Cancelled SuccessFully <fa-icon [icon]="faCheckSquare"></fa-icon>
+            </p>
+            <p class="text-muted text-danger">Status: Cancelled </p>
+        </h2>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-12 col-md-6">
+                <p class="lead">Ticket Id: {{ticket.ticket_id }}</p>
+                <p class="lead">Source : {{ ticket.flight.source }}</p>
+                <p class="lead">Destination : {{ ticket.flight.destination }} </p>
+            </div>
+            <div class="col-12 col-md-6">
+                <p class="lead">Price: {{ticket.flight.price }}</p>
+                <p class="lead">Boarding Date: {{ticket.flight.date | date:'fullDate'}}</p>
+                <p class="lead">Boarding Time: {{ticket.flight.date | date:'shortTime'}}</p>
+            </div>
+        </div>
+    </div>
+    <div class="card-footer">
+        <a routerLink="/dashboard/ticket-list" class="btn btn-success btn-lg">Go Back <fa-icon [icon]="faArrowCircleLeft"></fa-icon></a>
+    </div>
+</div>

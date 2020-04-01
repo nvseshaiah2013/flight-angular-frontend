@@ -2,7 +2,7 @@ import { Component, OnInit,Input } from '@angular/core';
 import { Flight } from '../../../models/flight.model';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { SelectedFlightComponent } from '../selected-flight/selected-flight.component';
-import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { faSearch, faThumbsDown } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-flight-list',
@@ -17,6 +17,7 @@ export class FlightListComponent implements OnInit {
   @Input('searched')
   searched:boolean = false;
   faSearch = faSearch;
+  faThumbsDown = faThumbsDown;
   constructor(private modalService:NgbModal) { }
 
   ngOnInit() {
@@ -24,8 +25,6 @@ export class FlightListComponent implements OnInit {
   }
   choosenFlight(flight:Flight)
   {
-    // console.log('Reaced');
-    // this.selectedFlight = flight;
     const modal = this.modalService.open(SelectedFlightComponent,{centered:true});
     modal.componentInstance.flight = flight;
   }

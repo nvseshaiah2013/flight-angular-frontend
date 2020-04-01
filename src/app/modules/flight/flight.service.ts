@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { BookingGaurdService } from './services/booking-gaurd.service';
 import { BookingRequest } from 'src/app/models/booking-request.model';
 import { BehaviorSubject } from 'rxjs';
+import { Ticket } from 'src/app/models/ticket.model';
 
 
 @Injectable({
@@ -18,10 +19,15 @@ export class FlightService {
   constructor(private http: HttpClient, private router: Router) { }
   private selectedFlight: Flight = null;
   private bookingRequest: BookingRequest = undefined;
+  private ticket:Ticket;
 
   getFlights(source: string, destination: string, date) {
-    let selectedDate = new Date(date.year, date.month - 1, date.day + 1).toISOString().split('T')[0];
-    let params = new HttpParams().set('source', source).set('destination', destination).set('date', selectedDate);
+    
+    let selectedDate = new Date(date.year, date.month - 1, date.day,12);
+    selectedDate.setFullYear(date.year);
+    let finalDate = selectedDate.toISOString().split('T')[0];
+    // let selectedDate = date.toISOString().split('T')[0];
+    let params = new HttpParams().set('source', source).set('destination', destination).set('date', finalDate);
     console.log(params);
     return this.http.get<Flight[]>(this.baseUrl + `/all`, { params: params });
   }
@@ -33,6 +39,11 @@ export class FlightService {
 
   isFlightSelected(): boolean {
     return this.selectedFlight !== null;
+  }
+
+  getSelectedFlight()
+  {
+    return this.selectedFlight;
   }
   isBookingDetailComplete() {
     return this.bookingRequest !== undefined;
@@ -50,14 +61,17 @@ export class FlightService {
   bookTicket() {
     return this.http.post(this.baseUrl + '/book', this.bookingRequest);
   }
-  // onFlightSelect(flight: Flight) {
-
-  //   this.selectedFlight = flight;
-  //   this.flightSelected.next(flight)
-  // }
-  onFlightSelect()
+  getBookedTicket()
   {
-    
+    return this.ticket;
+  }
+  setBookedTicket(ticket:any)
+  {
+    this.ticket = ticket;
+  }
+  removeTicket()
+  {
+    this.ticket = undefined;
   }
 
 }

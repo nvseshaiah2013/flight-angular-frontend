@@ -24,7 +24,8 @@
                     </p>
                     <p>
 
-                        <fa-icon [icon]="faMapMarkerAlt"></fa-icon> {{ flight.destination }} </p>
+                        <fa-icon [icon]="faMapMarkerAlt"></fa-icon> {{ flight.destination }}
+                    </p>
                 </div>
 
                 <div class="mt-4 mt-md-0 col-12 col-md-3">
@@ -51,16 +52,16 @@
         </button>
 
         <div *ngIf="show" class="row my-3 text-info">
-            <div class="col-12 col-md-3">
+            <div class="col-12 col-md-3" triggers="mouseenter:mouseleave" ngbPopover="Meal Chargeable, Wifi available at additional Charge" popoverTitle="Fare Break Down">
                 Price: <fa-icon [icon]="faRupeeSign"></fa-icon> {{flight.price}}
             </div>
-            <div class="col-12 col-md-3">
+            <div class="col-12 col-md-3" triggers="mouseenter:mouseleave" ngbPopover="No extra baggage other than mentioned" popoverTitle="Check In Baggage">
                 Check-In Baggage: {{ flight.checkinbaggage}} <fa-icon [icon]="faBalanceScaleLeft"></fa-icon>
             </div>
-            <div class="col-12 col-md-3">
+            <div class="col-12 col-md-3" triggers="mouseenter:mouseleave" ngbPopover="Extra baggage additional Charges Apply" popoverTitle="Cargo Baggage">
                 Cargo Baggage: {{ flight.cargobaggage}} <fa-icon [icon]="faBalanceScaleLeft"></fa-icon>
             </div>
-            <div class="col-12 col-md-3">
+            <div class="col-12 col-md-3" triggers="mouseenter:mouseleave" ngbPopover="Cancellation Charges is 100%" popoverTitle="Refund Clause">
                 Cancellation Charge: <fa-icon [icon]="faRupeeSign"></fa-icon> {{ flight.price}}
             </div>
         </div>

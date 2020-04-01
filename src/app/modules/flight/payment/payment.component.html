@@ -117,7 +117,7 @@
         </div>
         <div class="btn-group btn-block mt-5">
 
-            <button type="submit" class="btn btn-success">Pay Amount </button>
+            <button type="submit" class="btn btn-success">Pay Amount <fa-icon [icon]="faRupeeSign"></fa-icon> {{ amount }} </button>
             <button type="reset" class="btn btn-outline-danger" (click)="submitted = false">Reset</button>
         </div>
     </form>

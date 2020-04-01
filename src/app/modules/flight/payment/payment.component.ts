@@ -3,6 +3,8 @@ import {FormGroup, FormBuilder, Validators} from '@angular/forms';
 import { FlightService } from '../flight.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { PaymentSuccessComponent } from '../payment-success/payment-success.component';
+import { Ticket } from 'src/app/models/ticket.model';
+import { faRupeeSign } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-payment',
@@ -12,6 +14,8 @@ import { PaymentSuccessComponent } from '../payment-success/payment-success.comp
 export class PaymentComponent implements OnInit {
   paymentForm:FormGroup;
   submitted:boolean = false;
+  amount:number;
+  faRupeeSign = faRupeeSign;
   years=[
    
     { value: '2021', name: 2021 },
@@ -50,6 +54,7 @@ export class PaymentComponent implements OnInit {
       year:[,[Validators.required]],
       cvv:['',[Validators.required,Validators.pattern("[0-9]{3}")]]
     });
+    this.amount = this.flightService.getSelectedFlight().price;
   }
   payForm(){
     this.submitted = true;
@@ -61,6 +66,7 @@ export class PaymentComponent implements OnInit {
     this.flightService.bookTicket()
     .subscribe(data=>{
       console.log(data);
+      this.flightService.setBookedTicket(data);
       this.paySuccess();
     },err=>{
       console.log(err);

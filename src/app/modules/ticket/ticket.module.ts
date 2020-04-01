@@ -20,6 +20,7 @@ import { CancelTicketSuccessComponent } from './cancel-ticket-success/cancel-tic
     FontAwesomeModule,
     ReactiveFormsModule,
     NgbModule
-  ]
+  ],
+  entryComponents:[CancelTicketComponent,TicketModalComponent]
 })
 export class TicketModule { }

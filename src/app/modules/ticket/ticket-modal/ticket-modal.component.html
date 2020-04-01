@@ -1,1 +1,167 @@
-<p>ticket-modal works!</p>
+<div class="container-fluid">
+    <div class="modal-header bg-dark">
+        <p class="lead text-success font-weight-bold">
+            Booked Ticket
+        </p>
+        <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+            <span aria-hidden="true" class="text-white">
+                <fa-icon [icon]="faDoorClosed"></fa-icon>
+            </span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-12 col-md-6">
+                <p class="blockquote"> <span class="font-weight-bold">
+                        Flight Name:
+                    </span> {{ticket.flight.flight_name}} -- {{ ticket.flight.flight_code }} </p>
+                <p class="blockquote">
+                    <span class="font-weight-bold">
+                        Ticket Id:
+                    </span>
+                    {{ticket.ticket_id }}</p>
+                <p class="blockquote">
+                    <span class="font-weight-bold">
+
+                        Source :
+                    </span>
+
+                    {{ ticket.flight.source }}</p>
+                <p class="blockquote">
+                    <span class="font-weight-bold">
+
+                        Destination :
+                    </span>
+
+                    {{ ticket.flight.destination }} </p>
+                <p class="blockquote">
+                    <span class="font-weight-bold">
+
+                        Status:
+                    </span>
+                    {{ticket.status }}</p>
+            </div>
+            <div class="col-12 col-md-6">
+                <p class="blockquote">
+                    <span class="font-weight-bold"> Price:
+                    </span>
+
+                    <fa-icon [icon]="faRupeeSign"></fa-icon> {{ticket.flight.price }}
+                </p>
+                <p class="blockquote">
+                    <span class="font-weight-bold">
+                        Boarding Date:
+                    </span>
+                    {{ticket.flight.date | date:'fullDate'}}</p>
+                <p class="blockquote">
+                    <span class="font-weight-bold">
+
+                        Boarding Time:
+                    </span>
+
+                    {{ticket.flight.date | date:'shortTime'}}</p>
+                <p class="blockquote">
+                    <span class="font-weight-bold">
+
+                        CheckIn Baggage :
+                    </span>
+
+                    {{ticket.flight.checkinbaggage}} Kg</p>
+                <p class="blockquote">
+                    <span class="font-weight-bold">
+
+                        Cargo Baggage:
+                    </span>
+
+                    {{ticket.flight.cargobaggage}} Kg</p>
+            </div>
+
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-12 col-md-3">
+                <p class="blockquote">
+                    {{ ticket.name}}
+                </p>
+                <p class="blockquote-footer">
+                    Passenger Name
+                </p>
+            </div>
+            <div class="col-12 col-md-3">
+                <p class="blockquote">
+                    {{ ticket.age }}
+                </p>
+                <p class="blockquote-footer">
+                    Passenger Age
+                </p>
+            </div>
+            <div class="col-12 col-md-3">
+                <p class="blockquote">
+                    {{ ticket.gender}}
+                </p>
+                <p class="blockquote-footer">
+                    Gender
+                </p>
+            </div>
+            <div class="col-12 col-md-3">
+                <p class="blockquote">
+                    {{ ticket.idNo }}
+                </p>
+                <p class="blockquote-footer">
+                    {{ ticket.idType }} - Id Type
+                </p>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-12">
+
+
+                <div class="lead font-weight-bold">
+                    Additional Information
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        Carry Photo Identifaction with you for smooth Check In Process.
+                    </li>
+                    <li class="list-group-item">
+                        Carry a print Out of this E-Ticket.
+                    </li>
+                    <li class="list-group-item">
+                        You're carry on baggage should not weigh more than 7 kgs.
+                    </li>
+                    <li class="list-group-item">
+                        Your ticket number serves as confirmation of your ticket.
+                    </li>
+                    <li class="list-group-item">
+                        Check In counter will close 45 mins prior to boarding As Per Govt. Orders.
+                    </li>
+                    <li class="list-group-item">
+                        For Hassle Free Refund, Please Contact Customer Care.
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer mt-3">
+        <div class="container-fluid">
+
+            <div class="row">
+                <div class="col-12 col-md-4">                
+                    <p class="font-weight-bold"><fa-icon [icon]="faPhoneSlash"></fa-icon>Customer Support</p>
+                    <p class="text-muted">+91 999 8888 333</p>
+                </div>
+                <div class="col-12 col-md-4">
+                    
+                    <p class="font-weight-bold"><fa-icon [icon]="faPhoneSquare"></fa-icon>Contact Helpline</p>
+                    <p class="text-muted">+91 222 333 4444</p>
+                </div>
+                <div class="col-12 col-md-4">
+                    
+                    <p class="font-weight-bold"><fa-icon [icon]="faHotel"></fa-icon>Rent A Hotel ?</p>
+                    <p class="display-5">+91 987 6543 210 </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

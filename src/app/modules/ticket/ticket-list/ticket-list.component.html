@@ -1,7 +1,28 @@
 <div class="container-fluid">
-    <h2 class="heading">
+    <h2 class="heading bg-dark text-white lead">
         Ticket List
     </h2>
+</div>
+
+<div class="container">
+
+    <ul class="nav nav-tabs">
+        <li class="nav-item mx-2">
+            <button class="nav-link" (click)="allTicks()" id="all" (load)="allTicks()">
+                ALL
+            </button>
+        </li>
+        <li class="nav-item mx-2">
+            <button class="nav-link" (click)="bookedTicks()" id="book">
+                Booked
+            </button>
+        </li>
+        <li class="nav-item mx-2">
+            <button class="nav-link" (click)="cancelTicks()" id="cancel">
+                Cancelled
+            </button>
+        </li>
+    </ul>
 </div>
 
 <div class="container-fluid mt-5">

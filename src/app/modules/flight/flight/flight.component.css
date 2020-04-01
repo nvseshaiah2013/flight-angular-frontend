@@ -1,6 +1,7 @@
 .img-thumbnail{
     width: 8rem;
-    height:auto;    
+    height:auto; 
+    border:1px solid black;   
 }
 
 .btn-transparent:focus{
