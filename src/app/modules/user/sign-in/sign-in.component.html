@@ -51,8 +51,45 @@
                                 Password is a Required Field!
                             </div>
                             <div class="badge badge-danger badge-pill"
-                                *ngIf="signInForm.controls.password.errors.minlength" aria-autocomplete="none">
+                                *ngIf="signInForm.controls.password.errors.minlength" >
                                 Password should be of 8 characters!
+                            </div>
+                            <div class="border border-danger rounded" *ngIf="!signInForm.controls.password.errors.required">
+                                <p>
+                                    Password should have atleast one small letter!
+                                    <fa-icon [icon]="faCheckCircle" class="text-success"  *ngIf="!signInForm.controls.password.errors.hasSmall"></fa-icon>
+                                    <fa-icon [icon]="faTimesCircle" class="text-danger"  *ngIf="signInForm.controls.password.errors.hasSmall"></fa-icon>
+                                </p>
+                                <p>
+                                    Password should have atleast one Capital letter!
+                                    <fa-icon [icon]="faCheckCircle" class="text-success" *ngIf="!signInForm.controls.password.errors.hasCap"></fa-icon>
+                                    <fa-icon [icon]="faTimesCircle" class="text-danger" *ngIf="signInForm.controls.password.errors.hasCap"></fa-icon>
+                                </p>
+                                <p>
+                                    Password should have atleast one Number!
+                                    <fa-icon [icon]="faCheckCircle" class="text-success" *ngIf="!signInForm.controls.password.errors.hasNum"></fa-icon>
+                                    <fa-icon [icon]="faTimesCircle" class="text-danger" *ngIf="signInForm.controls.password.errors.hasNum"></fa-icon>
+                                </p>
+                                <p>
+                                    Password should have atleast one Special letter!
+                                    <fa-icon [icon]="faCheckCircle" class="text-success" *ngIf="!signInForm.controls.password.errors.hasSym"></fa-icon>
+                                    <fa-icon [icon]="faTimesCircle" class="text-danger" *ngIf="signInForm.controls.password.errors.hasSym"></fa-icon>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="confirmPassword" class="text-md-right col-10 col-md-3 d-none d-md-block">Confirm Password </label>
+                    <div class="offset-1 offset-md-0 col-10 col-md-7">
+                        <input type="password" formControlName="confirmPassword" id="confirmPassword" placeholder="Enter Password Again">
+                        <div
+                            *ngIf="(signInForm.controls.confirmPassword.touched || signInForm.controls.confirmPassword.dirty || submitted) && signInForm.controls.confirmPassword.errors">
+                            <div class="badge badge-danger badge-pill" *ngIf="signInForm.controls.confirmPassword.errors.required">
+                                Confirm Password is a Required Field!
+                            </div>
+                            <div class="badge badge-danger badge-pill" *ngIf="signInForm.controls.confirmPassword.errors.notMatch">
+                                Both the passwords must be equal!
                             </div>
                         </div>
                     </div>

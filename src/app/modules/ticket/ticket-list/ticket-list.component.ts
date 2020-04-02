@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Ticket } from '../../../models/ticket.model';
 import { TicketService } from '../ticket.service';
+import { faAddressCard } from '@fortawesome/free-regular-svg-icons';
 
 
 @Component({
@@ -11,6 +12,7 @@ import { TicketService } from '../ticket.service';
 export class TicketListComponent implements OnInit {
   private tickets: Ticket[];
   private ticketsView:Ticket[];
+  faAddressCard = faAddressCard;
   constructor(private ticketService: TicketService) {
     this.getTickets();
    }
