@@ -41,10 +41,12 @@ export class PasswordValidator {
     static passwordMatcher(control: AbstractControl) : {[key:string] : boolean } | null {
         const password = control.get('password').value;
         const cnfmPassword = control.get('confirmPassword').value;
-        console.log(cnfmPassword, password);
-        if(password === cnfmPassword)
+        if(password == cnfmPassword)
             return null;
-        return { notMatch : true }
+        else
+            {
+                control.get('confirmPassword').setErrors({notMatch:true});
+            }
     }
 }
 

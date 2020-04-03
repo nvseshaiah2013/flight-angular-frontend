@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserService } from '../user.service';
 import { Router } from '@angular/router';
 
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -12,6 +13,9 @@ export class LoginComponent implements OnInit {
 
   loginForm:FormGroup;
   submitted:boolean = false;
+  error:boolean = false;
+  show:boolean = true;
+  errors;
   constructor(private builder:FormBuilder,private service:UserService,private router:Router) { }
 
   ngOnInit(): void {
@@ -33,10 +37,13 @@ export class LoginComponent implements OnInit {
 
     },err=>{
       console.log(err);
-      console.log('fail');
-      this.router.navigate(['/home']);
+      this.errors = err.error;
+      this.error = true;
+      this.show = true;
     })
-
   }
+      close(){
+        setTimeout(()=>this.show = false,1000);
+      }
 
 }

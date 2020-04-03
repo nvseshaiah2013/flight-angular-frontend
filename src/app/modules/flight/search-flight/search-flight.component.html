@@ -48,7 +48,7 @@
                             <fa-icon [icon]="faCalendarCheck"></fa-icon>
                         </button>
                     </div>
-                    <input class="form-control" placeholder="Enter Date(yyyy-mm-dd)" formControlName="date" ngbDatepicker #d="ngbDatepicker">
+                    <input class="form-control" placeholder="Enter Date(yyyy-mm-dd)" formControlName="date" ngbDatepicker #d="ngbDatepicker" [minDate]="todayDate">
                 </div>
                 <div
                     *ngIf="(searchFlightForm.controls.date.touched || searchFlightForm.controls.date.dirty || submitted) && searchFlightForm.controls.date.errors">

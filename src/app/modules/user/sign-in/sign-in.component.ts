@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { UserService } from '../user.service';
 import { Router } from '@angular/router';
@@ -19,6 +19,8 @@ export class SignInComponent implements OnInit {
   faEyeSlash = faEyeSlash;
   faCheckCircle = faCheckCircle;
   faTimesCircle = faTimesCircle;
+  error:boolean = false;
+  show:boolean = true;
   constructor(private builder:FormBuilder,private service:UserService,private router:Router) { }
 
   ngOnInit(): void {
@@ -30,22 +32,34 @@ export class SignInComponent implements OnInit {
       age:['',[Validators.required,Validators.pattern("[1-9][0-9]")]],
       confirmPassword:['',Validators.compose([Validators.required])]
     },{validator:PasswordValidator.passwordMatcher});
+   
     
   }
+
+  
   signIn():any{
+   
     this.submitted = true;
     if(this.signInForm.invalid)
     {
       return;
     }
-    this.signInForm.removeControl('confirmPassword');
+    // this.signInForm.removeControl('confirmPassword');
+    // console.log(this.signInForm.value);
     this.service.addUser(this.signInForm.value).subscribe(data=>{
         console.log(data);
         this.router.navigate(['user','login'])
     },err=>{
       console.log(err);
+        this.error = true;
+        this.show = true;
         console.error("Failed To Sign Up");
-        this.errors = err;
+        this.errors = err.error;
     })
+  }
+
+  close()
+  {
+    setTimeout(()=>this.show = false,1500);
   }
 }

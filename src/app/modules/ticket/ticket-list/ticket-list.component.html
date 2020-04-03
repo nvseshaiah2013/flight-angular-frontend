@@ -30,9 +30,9 @@
         <div class="col-12" *ngFor="let ticket of this.getTicketList();">
             <app-ticket [ticket]="ticket"></app-ticket>
         </div>
-        <div class="col-12" *ngIf="this.getTicketList().length == 0">
-            <span class="lead text-center display-3 text-danger mt-4">
-                Sorry! No Tickets in this section. <fa-icon [icon]="faAddressCard"></fa-icon>
+        <div class="col-12 mt-5  text-center" *ngIf="this.getTicketList().length == 0">
+            <span class="lead display-4 text-danger">
+                Sorry! No Tickets <fa-icon [icon]="faAddressCard"></fa-icon> in this section. 
             </span>
         </div>
     </div>

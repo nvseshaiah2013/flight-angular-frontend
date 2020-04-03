@@ -1,7 +1,17 @@
 <div class="container-fluid">
     <div class="row">
+        <div class="offset-md-4 col-12 col-md-6 mt-4">
+            <ngb-toast *ngIf="error && show" header="Error Occured" [autohide]="false" (hide)="close()">
+                
+               <p class="text-danger text-center font-weight-bold">
+                   {{ errors.message }}
+               </p>
+            </ngb-toast>
+        </div>
+    </div>
+    <div class="row">
         <div class="offset-md-3 col-12 col-md-6">
-            <form [formGroup]="signInForm" (ngSubmit)="signIn()" class="m-6" novalidate>
+            <form [formGroup]="signInForm" (ngSubmit)="signIn()" class="mt-4" novalidate>
                 <h3 class="text-center mb-4 card-header">
                     Create Account
                 </h3>
@@ -54,29 +64,42 @@
                                 *ngIf="signInForm.controls.password.errors.minlength" >
                                 Password should be of 8 characters!
                             </div>
-                            <div class="border border-danger rounded" *ngIf="!signInForm.controls.password.errors.required">
-                                <p>
-                                    Password should have atleast one small letter!
-                                    <fa-icon [icon]="faCheckCircle" class="text-success"  *ngIf="!signInForm.controls.password.errors.hasSmall"></fa-icon>
-                                    <fa-icon [icon]="faTimesCircle" class="text-danger"  *ngIf="signInForm.controls.password.errors.hasSmall"></fa-icon>
-                                </p>
-                                <p>
-                                    Password should have atleast one Capital letter!
-                                    <fa-icon [icon]="faCheckCircle" class="text-success" *ngIf="!signInForm.controls.password.errors.hasCap"></fa-icon>
-                                    <fa-icon [icon]="faTimesCircle" class="text-danger" *ngIf="signInForm.controls.password.errors.hasCap"></fa-icon>
-                                </p>
-                                <p>
-                                    Password should have atleast one Number!
-                                    <fa-icon [icon]="faCheckCircle" class="text-success" *ngIf="!signInForm.controls.password.errors.hasNum"></fa-icon>
-                                    <fa-icon [icon]="faTimesCircle" class="text-danger" *ngIf="signInForm.controls.password.errors.hasNum"></fa-icon>
-                                </p>
-                                <p>
-                                    Password should have atleast one Special letter!
-                                    <fa-icon [icon]="faCheckCircle" class="text-success" *ngIf="!signInForm.controls.password.errors.hasSym"></fa-icon>
-                                    <fa-icon [icon]="faTimesCircle" class="text-danger" *ngIf="signInForm.controls.password.errors.hasSym"></fa-icon>
-                                </p>
-                            </div>
+                           
                         </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 col-md-8 offset-md-2">
+                        <ul class="list-group mb-3" *ngIf="(signInForm.controls.password.touched || signInForm.controls.password.dirty || submitted) && signInForm.controls.password.errors && !signInForm.controls.password.errors.required">
+                            <li class="list-group-item font-weight-lighter text-center">
+                                Password should have atleast one small letter!
+                                <fa-icon [icon]="faCheckCircle" class="text-success" *ngIf="!signInForm.controls.password.errors.hasSmall">
+                                </fa-icon>
+                                <fa-icon [icon]="faTimesCircle" class="text-danger" *ngIf="signInForm.controls.password.errors.hasSmall">
+                                </fa-icon>
+                            </li>
+                            <li class="list-group-item font-weight-lighter text-center">
+                                Password should have atleast one Capital letter!
+                                <fa-icon [icon]="faCheckCircle" class="text-success" *ngIf="!signInForm.controls.password.errors.hasCap">
+                                </fa-icon>
+                                <fa-icon [icon]="faTimesCircle" class="text-danger" *ngIf="signInForm.controls.password.errors.hasCap">
+                                </fa-icon>
+                            </li>
+                            <li class="list-group-item font-weight-lighter text-center">
+                                Password should have atleast one Number!
+                                <fa-icon [icon]="faCheckCircle" class="text-success" *ngIf="!signInForm.controls.password.errors.hasNum">
+                                </fa-icon>
+                                <fa-icon [icon]="faTimesCircle" class="text-danger" *ngIf="signInForm.controls.password.errors.hasNum">
+                                </fa-icon>
+                            </li>
+                            <li class="list-group-item font-weight-lighter text-center">
+                                Password must have atleast one Special letter!
+                                <fa-icon [icon]="faCheckCircle" class="text-success" *ngIf="!signInForm.controls.password.errors.hasSym">
+                                </fa-icon>
+                                <fa-icon [icon]="faTimesCircle" class="text-danger" *ngIf="signInForm.controls.password.errors.hasSym">
+                                </fa-icon>
+                            </li>
+                        </ul>
                     </div>
                 </div>
                 <div class="form-group row">

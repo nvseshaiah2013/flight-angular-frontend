@@ -4,6 +4,7 @@ import { faSearchLocation, faCalendarCheck, faPlaneDeparture, faPlaneArrival } f
 import { FlightService } from '../flight.service';
 import { Flight } from '../../../models/flight.model';
 import { DateValidate } from '../date.validation';
+import { NgbDate } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-search-flight',
@@ -20,16 +21,19 @@ export class SearchFlightComponent implements OnInit {
   model;
   flights: Flight[] =[];
   searched:boolean =false;
+  private minDate = new Date();
+  todayDate: NgbDate = new NgbDate(this.minDate.getFullYear(), this.minDate.getMonth() + 1, this.minDate.getDate());
   constructor(private builder: FormBuilder, private service: FlightService) {
-   
-   }
+
+  }
 
   ngOnInit(): void {
     this.searchFlightForm = this.builder.group({
       source: ['', [Validators.required,Validators.pattern("([a-zA-Z]+[ ]?)+")]],
       destination: ['', [Validators.required, Validators.pattern("([a-zA-Z]+[ ]?)+")]],
       date: ['', [Validators.required,DateValidate]]
-    });    
+    }); 
+        
   }
   searchFlight() {
     this.submitted = true;
