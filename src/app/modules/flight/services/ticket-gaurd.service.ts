@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { FlightService } from '../flight.service';
-import { Router } from '@angular/router';
+import { Router, CanActivate } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
-export class TicketGaurdService {
+export class TicketGaurdService implements CanActivate{
 
   constructor(private flightService:FlightService,private router:Router) { }
 

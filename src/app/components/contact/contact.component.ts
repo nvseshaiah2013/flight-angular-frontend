@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { faPhone, faEnvelope, faSms } from '@fortawesome/free-solid-svg-icons';
+// import { environment } from '../../../environments/environment';
 
 
 @Component({

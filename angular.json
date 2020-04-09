@@ -50,11 +50,6 @@
                   "type": "initial",
                   "maximumWarning": "2mb",
                   "maximumError": "5mb"
-                },
-                {
-                  "type": "any",
-                  "maximumWarning": "6000kb",
-                  "maximumError": "10000kb"
                 }
               ]
             }

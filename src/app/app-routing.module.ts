@@ -7,8 +7,8 @@ import { AuthGuardService } from './services/auth-guard.service';
 const routes: Routes = [
   {path:'home',component:WelcomeComponent},
   {path:'user',loadChildren:()=>import('./modules/user/user.module').then(m=>m.UserModule)},
-  {path:'dashboard',loadChildren:()=>import('./modules/flight/flight.module').then(f=>f.FlightModule),canActivate:[AuthGuardService]},
-  {path:'dashboard',loadChildren:()=>import('./modules/ticket/ticket.module').then(t=>t.TicketModule),canActivate:[AuthGuardService]},
+  {path:'dashboard',loadChildren:()=>import('./modules/flight/flight.module').then(f=>f.FlightModule),canLoad:[AuthGuardService]},
+  {path:'dashboard',loadChildren:()=>import('./modules/ticket/ticket.module').then(t=>t.TicketModule),canLoad:[AuthGuardService]},
   {path:'',redirectTo:'/home',pathMatch:'full'},
   {path:'**',redirectTo:'/home'}
 ];

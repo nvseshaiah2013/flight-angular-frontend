@@ -5,7 +5,7 @@ import { FlightService } from '../flight.service';
 @Injectable({
   providedIn: 'root'
 })
-export class PaymentGuardService {
+export class PaymentGuardService implements CanActivate{
 
   constructor(private router:Router,private flightService:FlightService) { }
 

@@ -19,8 +19,8 @@ export class SearchFlightComponent implements OnInit {
   faPlaneArrival = faPlaneArrival;
   submitted: boolean = false;
   model;
-  flights: Flight[] =[];
-  searched:boolean =false;
+  flights: Flight[] = [];
+  searched: boolean = false;
   private minDate = new Date();
   todayDate: NgbDate = new NgbDate(this.minDate.getFullYear(), this.minDate.getMonth() + 1, this.minDate.getDate());
   constructor(private builder: FormBuilder, private service: FlightService) {
@@ -29,33 +29,29 @@ export class SearchFlightComponent implements OnInit {
 
   ngOnInit(): void {
     this.searchFlightForm = this.builder.group({
-      source: ['', [Validators.required,Validators.pattern("([a-zA-Z]+[ ]?)+")]],
+      source: ['', [Validators.required, Validators.pattern("([a-zA-Z]+[ ]?)+")]],
       destination: ['', [Validators.required, Validators.pattern("([a-zA-Z]+[ ]?)+")]],
-      date: ['', [Validators.required,DateValidate]]
-    }); 
-        
+      date: ['', [Validators.required, DateValidate]]
+    });
+
   }
   searchFlight() {
     this.submitted = true;
-    if(this.searchFlightForm.invalid)
-    {
+    if (this.searchFlightForm.invalid) {
       return;
     }
-    console.log(this.searchFlightForm.value);
     this.searched = true;
     this.getFlights();
   }
   getFlights() {
     let flightData = this.searchFlightForm.controls;
     this.service.getFlights(flightData.source.value,
-       flightData.destination.value,
-        flightData.date.value).subscribe(data => {
-          
-      this.flights = data;
-      console.log(data);
-    }, err => {
-      console.log(err);
-    })
+      flightData.destination.value,
+      flightData.date.value).subscribe(data => {
+        this.flights = data;
+      }, err => {
+        console.log(err);
+      })
   }
- 
+
 }
