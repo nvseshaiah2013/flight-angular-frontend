@@ -2,7 +2,9 @@
     <div class="row mt-5">
         <div class="col-12 col-md-11" *ngIf="flightList">
             <div class="container my-3" *ngFor="let flight of flightList;">
-                <app-flight [flight]="flight" (chooseFlight)="choosenFlight($event)"></app-flight>
+                <div [@expand]>
+                    <app-flight [flight]="flight" (chooseFlight)="choosenFlight($event)" ></app-flight>
+                </div>
             </div>
             <div class="container" *ngIf="searched && flightList.length == 0">
                 <p class="display-3 text-center mt-5">

@@ -1,14 +1,14 @@
-input{
+.form-control{
+    border:none;
     border-bottom: 2px solid black;
-    border-top:none;
-    border-left: none;
-    border-right: none;
     outline: none;
     background-color: transparent;
-    padding:5px;
+    padding: 5px;
     width: 100%;
-   
+    box-shadow: none;
+    border-radius: 0;
 }
+
 .badge-danger{
     letter-spacing: 1.5px;
     font-weight: 600;
@@ -38,4 +38,19 @@ input:invalid{
     font-weight: 400;
     border-bottom: 2px solid green;
     border-radius: 5px;
+}
+
+.add-on{
+    padding:0;
+    margin:0;
+    border:none;
+    border-bottom:2px solid black;
+    border-radius: 0;
+    box-shadow: none;
+    background-color: transparent;
+}
+
+fa-icon
+{
+    background-color: transparent;
 }

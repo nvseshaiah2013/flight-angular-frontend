@@ -9,29 +9,21 @@ import { User } from '../../models/user.model';
 export class UserService {
 
   private baseUrl = 'http://localhost:8080/users';
-  constructor(private http:HttpClient,private router:Router) { }
-  addUser(user:User)
-  {
-    return this.http.post(this.baseUrl + '/add',user);
+  constructor(private http: HttpClient, private router: Router) { }
+  addUser(user: User) {
+    return this.http.post(this.baseUrl + '/add', user);
   }
 
-  loginUser(username:string,password:string)
-  {
-    return this.http.post(this.baseUrl + '/authenticate',{"username":username,"password":password});
+  loginUser(username: string, password: string) {
+    return this.http.post(this.baseUrl + '/authenticate', { "username": username, "password": password });
   }
 
-  logOutUser()
-  {
+  logOutUser() {
     localStorage.removeItem('$F#R%S_ToKeN');
     this.router.navigate(['/home'])
   }
-
-  
-
-  getUser()
-  {
-    
-    return this.http.post(this.baseUrl + '/getUser',{});
+  getUser() {
+    return this.http.get<User>(this.baseUrl + '/getUser', {});
   }
 
 }

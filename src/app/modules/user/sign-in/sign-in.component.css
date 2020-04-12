@@ -5,13 +5,15 @@
     font-family: 'Sniglet', cursive;
 }
 
-input{
+.form-control{
     border:none;
     border-bottom: 2px solid black;
     outline: none;
     background-color: transparent;
     padding: 5px;
     width: 100%;
+    box-shadow: none;
+    border-radius: 0;
 }
 
 .badge-danger{
@@ -20,6 +22,20 @@ input{
     padding:3px 10px; 
 }
 
+.add-on{
+    padding:0;
+    margin:0;
+    border:none;
+    border-bottom:2px solid black;
+    border-radius: 0;
+    box-shadow: none;
+    background-color: transparent;
+}
+
+fa-icon
+{
+    background-color: transparent;
+}
 input:focus {
     animation: pulse 0.2s;
     animation-timing-function: ease-in-out;

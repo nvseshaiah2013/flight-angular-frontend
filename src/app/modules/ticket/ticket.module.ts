@@ -13,7 +13,12 @@ import { CancelTicketSuccessComponent } from './cancel-ticket-success/cancel-tic
 
 
 @NgModule({
-  declarations: [TicketComponent, TicketListComponent, TicketModalComponent, CancelTicketComponent, CancelTicketSuccessComponent],
+  declarations: [
+    TicketComponent, 
+    TicketListComponent, 
+    TicketModalComponent, 
+    CancelTicketComponent, 
+    CancelTicketSuccessComponent],
   imports: [
     CommonModule,
     TicketRoutingModule,

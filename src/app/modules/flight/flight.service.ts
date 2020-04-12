@@ -12,9 +12,6 @@ import { Ticket } from 'src/app/models/ticket.model';
   providedIn: 'root'
 })
 export class FlightService {
-  // @Output() flightSelected:EventEmitter<Flight> = new EventEmitter<Flight>();
-  // flightSelected: BehaviorSubject<Flight> = new BehaviorSubject(null);
-
   baseUrl = 'http://localhost:8080/flights';
   constructor(private http: HttpClient, private router: Router) { }
   private selectedFlight: Flight = null;
@@ -26,10 +23,16 @@ export class FlightService {
     let selectedDate = new Date(date.year, date.month - 1, date.day,12);
     selectedDate.setFullYear(date.year);
     let finalDate = selectedDate.toISOString().split('T')[0];
-    // let selectedDate = date.toISOString().split('T')[0];
     let params = new HttpParams().set('source', source).set('destination', destination).set('date', finalDate);
-    console.log(params);
     return this.http.get<Flight[]>(this.baseUrl + `/all`, { params: params });
+  }
+
+  getSources(){
+    return this.http.get<string[]>(this.baseUrl + '/sources');
+  }
+
+  getDestinations() {
+    return this.http.get<string[]>(this.baseUrl + '/destinations');
   }
 
   bookFlight(flight: Flight) {

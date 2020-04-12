@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NgbModule, NgbDateAdapter, NgbDateNativeAdapter, NgbDateNativeUTCAdapter } from '@ng-bootstrap/ng-bootstrap';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
@@ -14,6 +15,8 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { JwtModule } from '@auth0/angular-jwt';
+import { NotFoundComponent } from './components/not-found/not-found.component';
+import { LoadingComponent } from './components/loading/loading.component';
 
 export function tokenGetter()
 {
@@ -28,10 +31,13 @@ export function tokenGetter()
     SidebarComponent,
     DashboardComponent,
     ContactComponent,
-    FooterComponent
+    FooterComponent,
+    NotFoundComponent,
+    LoadingComponent
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     FontAwesomeModule,
     ReactiveFormsModule,

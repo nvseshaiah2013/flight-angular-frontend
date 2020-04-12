@@ -3,11 +3,16 @@ import { Flight } from '../../../models/flight.model';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { SelectedFlightComponent } from '../selected-flight/selected-flight.component';
 import { faSearch, faThumbsDown } from '@fortawesome/free-solid-svg-icons';
+import { expand } from '../../../animations/route.animation';
+
 
 @Component({
   selector: 'app-flight-list',
   templateUrl: './flight-list.component.html',
-  styleUrls: ['./flight-list.component.css']
+  styleUrls: ['./flight-list.component.css'],
+  animations:[
+    expand()
+  ]
 })
 
 

@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FlightRoutingModule } from './flight-routing.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ReactiveFormsModule } from '@angular/forms';
-import { NgbModule, NgbDateAdapter, NgbDateNativeAdapter, NgbDateNativeUTCAdapter } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { SearchFlightComponent } from './search-flight/search-flight.component';
 import { FlightComponent } from './flight/flight.component';

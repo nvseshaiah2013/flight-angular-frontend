@@ -2,16 +2,21 @@ import { Component, OnInit } from '@angular/core';
 import { Ticket } from '../../../models/ticket.model';
 import { TicketService } from '../ticket.service';
 import { faAddressCard } from '@fortawesome/free-regular-svg-icons';
-
+import { flyInOut } from '../../../animations/route.animation';
 
 @Component({
   selector: 'app-ticket-list',
   templateUrl: './ticket-list.component.html',
-  styleUrls: ['./ticket-list.component.css']
+  styleUrls: ['./ticket-list.component.css'],
+  host: {
+    '[@flyInOut]': 'true',
+    'style': 'display: block;'
+  },
+  animations: [flyInOut()]
 })
 export class TicketListComponent implements OnInit {
   private tickets: Ticket[];
-  private ticketsView:Ticket[];
+  private ticketsView:Ticket[]=[];
   faAddressCard = faAddressCard;
   constructor(private ticketService: TicketService) {
     this.getTickets();

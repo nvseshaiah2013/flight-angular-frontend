@@ -29,9 +29,6 @@ export class FlightComponent implements OnInit {
 
   bookTicket(flight:Flight)
   {
-    // this.flightService.bookFlight(flight);
-    // this.flightService.onFlightSelect(flight);
-    console.log('jj');
     this.chooseFlight.emit(flight);
   }
 }

@@ -15,7 +15,7 @@
                         Name field is required !
                     </div>
                     <div class="mt-1 ml-2 badge badge-pill badge-danger"
-                        *ngIf="submitted && paymentForm.controls.name.errors.pattern">
+                        *ngIf="(paymentForm.controls.name.touched || paymentForm.controls.nmae.dirty || submitted) && paymentForm.controls.name.errors.pattern">
                         Name must contain characters only
                     </div>
                 </div>
@@ -29,11 +29,11 @@
                     class="form-control">
                 <div *ngIf="submitted && paymentForm.controls.cardNo.errors">
                     <div class="mt-1 ml-2 badge badge-pill badge-danger"
-                        *ngIf="submitted && paymentForm.controls.cardNo.errors.required">
+                        *ngIf="(paymentForm.controls.cardNo.touched || paymentForm.controls.cardNo.dirty || submitted) && paymentForm.controls.cardNo.errors.required">
                         Card Number is Required!
                     </div>
                     <div class="mt-1 ml-2 badge badge-pill badge-danger"
-                        *ngIf="submitted && paymentForm.controls.cardNo.errors.pattern">
+                        *ngIf="(paymentForm.controls.cardNo.touched || paymentForm.controls.cardNo.dirty || submitted) && paymentForm.controls.cardNo.errors.pattern">
                         Card Must contain 16 digits
                     </div>
                 </div>
@@ -61,7 +61,7 @@
                         </div>
                                 <div *ngIf="submitted && paymentForm.controls.month.errors">
                                     <div class="mt-1 ml-1 badge badge-pill badge-danger"
-                                        *ngIf="submitted && paymentForm.controls.month.errors.required">
+                                        *ngIf="(paymentForm.controls.month.touched || paymentForm.controls.month.dirty || submitted) && paymentForm.controls.month.errors.required">
                                         Expiry month is Required!
                                     </div>
                                 </div>
@@ -78,7 +78,7 @@
                                 <option *ngFor="let year of years;" value={{year.value}}>{{year.name}}</option>
                             </select>
                         </div>
-                                <div *ngIf="submitted && paymentForm.controls.year.errors">
+                                <div *ngIf="(paymentForm.controls.year.touched || paymentForm.controls.year.dirty || submitted) && paymentForm.controls.year.errors">
                                     <div class="mt-1 ml-1 badge badge-pill badge-danger"
                                         *ngIf="submitted && paymentForm.controls.year.errors.required">
                                         Expiry year is Required!
@@ -105,7 +105,7 @@
                 </div>
                 <div *ngIf="submitted && paymentForm.controls.cvv.errors">
                     <div class="ml-2 mt-1 badge badge-pill badge-danger"
-                        *ngIf="submitted && paymentForm.controls.cvv.errors.required">
+                        *ngIf="(paymentForm.controls.cvv.touched || paymentForm.controls.cvv.dirty || submitted) && paymentForm.controls.cvv.errors.required">
                         CVV is Required
                     </div>
                     <div class="ml-2 mt-1 badge badge-pill badge-danger"

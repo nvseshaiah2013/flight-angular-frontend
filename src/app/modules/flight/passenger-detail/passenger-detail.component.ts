@@ -1,11 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import {FormGroup,FormBuilder,Validators} from '@angular/forms';
 import { FlightService } from '../flight.service';
+import { flyInOut } from '../../../animations/route.animation';
 
 @Component({
   selector: 'app-passenger-detail',
   templateUrl: './passenger-detail.component.html',
-  styleUrls: ['./passenger-detail.component.css']
+  styleUrls: ['./passenger-detail.component.css'],
+  host: {
+    '[@flyInOut]': 'true',
+    'style': 'display: block;'
+  },
+  animations: [flyInOut()]
 })
 export class PassengerDetailComponent implements OnInit {
 

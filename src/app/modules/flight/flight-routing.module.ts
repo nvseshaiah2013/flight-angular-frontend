@@ -15,9 +15,7 @@ const routes: Routes = [{
   path:'',component:DashboardComponent,children:[
     {path:'',redirectTo:'search-flight',pathMatch:'full'},
     {path:'search-flight',component:SearchFlightComponent},
-    {path:'temp',component:PassengerDetailComponent},
     {path:'payment',component:PaymentComponent,canActivate:[PaymentGuardService]},
-    {path:'payment-success',component:PaymentSuccessComponent},
     {path:'view-ticket',component:ViewTicketComponent,canActivate:[TicketGaurdService]},
     {path:'passenger-detail',component:PassengerDetailComponent,canActivate:[BookingGaurdService]}
   ]

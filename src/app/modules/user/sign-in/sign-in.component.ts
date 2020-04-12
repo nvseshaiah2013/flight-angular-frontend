@@ -4,11 +4,18 @@ import { UserService } from '../user.service';
 import { Router } from '@angular/router';
 import { PasswordValidator } from '../password-validator';
 import { faCheckCircle, faEyeSlash, faEye ,faTimesCircle } from '@fortawesome/free-solid-svg-icons';
+import { flyUpDown } from '../../../animations/route.animation';
+
 
 @Component({
   selector: 'app-sign-in',
   templateUrl: './sign-in.component.html',
-  styleUrls: ['./sign-in.component.css']
+  styleUrls: ['./sign-in.component.css'],
+  host: {
+    '[@flyUpDown]': 'true',
+    'style': 'display: block;'
+  },
+  animations: [flyUpDown()]
 })
 export class SignInComponent implements OnInit {
 
@@ -19,8 +26,10 @@ export class SignInComponent implements OnInit {
   faEyeSlash = faEyeSlash;
   faCheckCircle = faCheckCircle;
   faTimesCircle = faTimesCircle;
+  temp = faEye;
   error:boolean = false;
   show:boolean = true;
+  pwdshow:boolean = false;
   constructor(private builder:FormBuilder,private service:UserService,private router:Router) { }
 
   ngOnInit(): void {
@@ -35,8 +44,19 @@ export class SignInComponent implements OnInit {
    
     
   }
-
-  
+  toggle(){
+    return this.pwdshow=!this.pwdshow;
+  }
+  opener(){
+    const pwd = document.getElementsByName('password')[0];
+    if(pwd.getAttribute('type')== 'password'){
+      pwd.setAttribute('type','text');
+    }
+    else{
+      pwd.setAttribute('type', 'password');
+    }
+    this.toggle() ? this.faEye = this.faEyeSlash : this.faEye = this.temp;
+  }
   signIn():any{
    
     this.submitted = true;

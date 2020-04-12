@@ -2,12 +2,18 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserService } from '../user.service';
 import { Router } from '@angular/router';
-
+import { flyUpDown } from '../../../animations/route.animation';
+import { faEye, faEyeSlash} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
+  host: {
+    '[@flyUpDown]': 'true',
+    'style': 'display: block;'
+  },
+  animations: [flyUpDown()]
 })
 export class LoginComponent implements OnInit {
 
@@ -16,6 +22,10 @@ export class LoginComponent implements OnInit {
   error:boolean = false;
   show:boolean = true;
   errors;
+  faEye = faEye;
+  faEyeSlash =faEyeSlash;
+  temp = faEye;
+  pwdshow :boolean = false;
   constructor(private builder:FormBuilder,private service:UserService,private router:Router) { }
 
   ngOnInit(): void {
@@ -45,5 +55,17 @@ export class LoginComponent implements OnInit {
       close(){
         setTimeout(()=>this.show = false,1000);
       }
-
+  toggle() {
+    return this.pwdshow = !this.pwdshow;
+  }
+  opener() {
+    const pwd = document.getElementsByName('password')[0];
+    if (pwd.getAttribute('type') == 'password') {
+      pwd.setAttribute('type', 'text');
+    }
+    else {
+      pwd.setAttribute('type', 'password');
+    }
+    this.toggle() ? this.faEye = this.faEyeSlash : this.faEye = this.temp;
+  }
 }

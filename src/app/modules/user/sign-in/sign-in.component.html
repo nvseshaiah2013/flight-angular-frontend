@@ -2,10 +2,10 @@
     <div class="row">
         <div class="offset-md-4 col-12 col-md-6 mt-4">
             <ngb-toast *ngIf="error && show" header="Error Occured" [autohide]="false" (hide)="close()">
-                
-               <p class="text-danger text-center font-weight-bold">
-                   {{ errors.message }}
-               </p>
+
+                <p class="text-danger text-center font-weight-bold">
+                    {{ errors.message }}
+                </p>
             </ngb-toast>
         </div>
     </div>
@@ -20,7 +20,8 @@
                 <div class="form-group row">
                     <label for="name" class="text-md-right col-10 col-md-3 d-none d-md-block">Name</label>
                     <div class="offset-1 offset-md-0 col-10 col-md-7">
-                        <input type="text" formControlName="name" id="name" placeholder="Enter Name.">
+                        <input type="text" formControlName="name" id="name" placeholder="Enter Name."
+                            class="form-control">
                         <div
                             *ngIf="(signInForm.controls.name.touched || signInForm.controls.name.dirty || submitted) && signInForm.controls.name.errors">
                             <div class="badge badge-danger badge-pill" *ngIf="signInForm.controls.name.errors.required">
@@ -35,7 +36,8 @@
                 <div class="form-group row">
                     <label for="username" class="text-md-right col-10 col-md-3 d-none d-md-block">Username</label>
                     <div class="offset-1 offset-md-0 col-10 col-md-7">
-                        <input type="text" formControlName="username" id="username" placeholder="Enter Username.">
+                        <input type="text" formControlName="username" id="username" placeholder="Enter Username."
+                            class="form-control">
                         <div
                             *ngIf="(signInForm.controls.username.touched || signInForm.controls.username.dirty || submitted) && signInForm.controls.username.errors">
                             <div class="badge badge-danger badge-pill"
@@ -52,7 +54,14 @@
                 <div class="form-group row">
                     <label for="password" class="text-md-right col-10 col-md-3 d-none d-md-block">Password</label>
                     <div class="offset-1 offset-md-0 col-10 col-md-7">
-                        <input type="password" formControlName="password" id="password" placeholder="Enter Password">
+                        <div class="input-group">
+
+                            <input type="password" formControlName="password" id="password" placeholder="Enter Password"
+                                class="form-control" name="password">
+                            <button class="input-group-append btn btn-transparent add-on" type="button" (click)="opener()">
+                                <fa-icon [icon]="faEye" id="pwd" class="input-group-text"></fa-icon>
+                            </button>
+                        </div>
 
                         <div
                             *ngIf="(signInForm.controls.password.touched || signInForm.controls.password.dirty || submitted) && signInForm.controls.password.errors">
@@ -61,66 +70,84 @@
                                 Password is a Required Field!
                             </div>
                             <div class="badge badge-danger badge-pill"
-                                *ngIf="signInForm.controls.password.errors.minlength" >
+                                *ngIf="signInForm.controls.password.errors.minlength">
                                 Password should be of 8 characters!
                             </div>
-                           
+
                         </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-12 col-md-8 offset-md-2">
-                        <ul class="list-group mb-3" *ngIf="(signInForm.controls.password.touched || signInForm.controls.password.dirty || submitted) && signInForm.controls.password.errors && !signInForm.controls.password.errors.required">
+                        <ul class="list-group mb-3"
+                            *ngIf="(signInForm.controls.password.touched || signInForm.controls.password.dirty || submitted) && signInForm.controls.password.errors && !signInForm.controls.password.errors.required">
                             <li class="list-group-item font-weight-lighter text-center">
                                 Password should have atleast one small letter!
-                                <fa-icon [icon]="faCheckCircle" class="text-success" *ngIf="!signInForm.controls.password.errors.hasSmall">
+                                <fa-icon [icon]="faCheckCircle" class="text-success"
+                                    *ngIf="!signInForm.controls.password.errors.hasSmall">
                                 </fa-icon>
-                                <fa-icon [icon]="faTimesCircle" class="text-danger" *ngIf="signInForm.controls.password.errors.hasSmall">
+                                <fa-icon [icon]="faTimesCircle" class="text-danger"
+                                    *ngIf="signInForm.controls.password.errors.hasSmall">
                                 </fa-icon>
                             </li>
                             <li class="list-group-item font-weight-lighter text-center">
                                 Password should have atleast one Capital letter!
-                                <fa-icon [icon]="faCheckCircle" class="text-success" *ngIf="!signInForm.controls.password.errors.hasCap">
+                                <fa-icon [icon]="faCheckCircle" class="text-success"
+                                    *ngIf="!signInForm.controls.password.errors.hasCap">
                                 </fa-icon>
-                                <fa-icon [icon]="faTimesCircle" class="text-danger" *ngIf="signInForm.controls.password.errors.hasCap">
+                                <fa-icon [icon]="faTimesCircle" class="text-danger"
+                                    *ngIf="signInForm.controls.password.errors.hasCap">
                                 </fa-icon>
                             </li>
                             <li class="list-group-item font-weight-lighter text-center">
                                 Password should have atleast one Number!
-                                <fa-icon [icon]="faCheckCircle" class="text-success" *ngIf="!signInForm.controls.password.errors.hasNum">
+                                <fa-icon [icon]="faCheckCircle" class="text-success"
+                                    *ngIf="!signInForm.controls.password.errors.hasNum">
                                 </fa-icon>
-                                <fa-icon [icon]="faTimesCircle" class="text-danger" *ngIf="signInForm.controls.password.errors.hasNum">
+                                <fa-icon [icon]="faTimesCircle" class="text-danger"
+                                    *ngIf="signInForm.controls.password.errors.hasNum">
                                 </fa-icon>
                             </li>
                             <li class="list-group-item font-weight-lighter text-center">
                                 Password must have atleast one Special letter!
-                                <fa-icon [icon]="faCheckCircle" class="text-success" *ngIf="!signInForm.controls.password.errors.hasSym">
+                                <fa-icon [icon]="faCheckCircle" class="text-success"
+                                    *ngIf="!signInForm.controls.password.errors.hasSym">
                                 </fa-icon>
-                                <fa-icon [icon]="faTimesCircle" class="text-danger" *ngIf="signInForm.controls.password.errors.hasSym">
+                                <fa-icon [icon]="faTimesCircle" class="text-danger"
+                                    *ngIf="signInForm.controls.password.errors.hasSym">
                                 </fa-icon>
                             </li>
                         </ul>
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="confirmPassword" class="text-md-right col-10 col-md-3 d-none d-md-block">Confirm Password </label>
+                    <label for="confirmPassword" class="text-md-right col-10 col-md-3 d-none d-md-block">Confirm
+                        Password </label>
                     <div class="offset-1 offset-md-0 col-10 col-md-7">
-                        <input type="password" formControlName="confirmPassword" id="confirmPassword" placeholder="Enter Password Again">
+
+
+                        <input type="password" formControlName="confirmPassword" id="confirmPassword"
+                            placeholder="Enter Password Again" class="form-control" />
+
+
                         <div
                             *ngIf="(signInForm.controls.confirmPassword.touched || signInForm.controls.confirmPassword.dirty || submitted) && signInForm.controls.confirmPassword.errors">
-                            <div class="badge badge-danger badge-pill" *ngIf="signInForm.controls.confirmPassword.errors.required">
+                            <div class="badge badge-danger badge-pill"
+                                *ngIf="signInForm.controls.confirmPassword.errors.required">
                                 Confirm Password is a Required Field!
                             </div>
-                            <div class="badge badge-danger badge-pill" *ngIf="signInForm.controls.confirmPassword.errors.notMatch">
+                            <div class="badge badge-danger badge-pill"
+                                *ngIf="signInForm.controls.confirmPassword.errors.notMatch">
                                 Both the passwords must be equal!
                             </div>
                         </div>
                     </div>
+
                 </div>
                 <div class="form-group row">
                     <label for="age" class="text-md-right col-10 col-md-3 d-none d-md-block">Age</label>
                     <div class="offset-1 offset-md-0 col-10 col-md-7">
-                        <input type="text" formControlName="age" id="age" placeholder="Enter Age.">
+                        <input type="text" formControlName="age" id="age" placeholder="Enter Age." class="form-control">
                         <div
                             *ngIf="(signInForm.controls.age.touched || signInForm.controls.age.dirty || submitted) && signInForm.controls.age.errors">
                             <div class="badge badge-danger badge-pill" *ngIf="signInForm.controls.age.errors.required">

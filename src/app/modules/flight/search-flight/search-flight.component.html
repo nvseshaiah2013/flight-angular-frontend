@@ -9,7 +9,7 @@
                             <fa-icon [icon]="faPlaneDeparture"></fa-icon>
                         </button>
                     </div>
-                    <input type="text" formControlName="source" id="source" placeholder="Enter Source" class="form-control">
+                    <input type="text" formControlName="source" id="source" placeholder="Enter Source" class="form-control" [ngbTypeahead]="searchSource">
                 </div>
                 <div *ngIf="(searchFlightForm.controls.source.touched || searchFlightForm.controls.source.dirty || submitted) && searchFlightForm.controls.source.errors">
                     <div class="badge badge-pill badge-danger" *ngIf="searchFlightForm.controls.source.errors.required">
@@ -28,7 +28,7 @@
                             <fa-icon [icon]="faPlaneArrival"></fa-icon>
                         </div>
                     </div>
-                    <input type="text" formControlName="destination" id="destination" placeholder="Enter Destination" class="form-control">
+                    <input type="text" formControlName="destination" id="destination" placeholder="Enter Destination" class="form-control" [ngbTypeahead]="searchDestination">
                 </div>
                 <div
                     *ngIf="(searchFlightForm.controls.destination.touched || searchFlightForm.controls.destination.dirty || submitted) && searchFlightForm.controls.destination.errors">

@@ -5,11 +5,19 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { PaymentSuccessComponent } from '../payment-success/payment-success.component';
 import { Ticket } from 'src/app/models/ticket.model';
 import { faRupeeSign } from '@fortawesome/free-solid-svg-icons';
+import { flyInOut } from '../../../animations/route.animation';
+import { delay } from 'rxjs/operators';
+import { LoadingService } from 'src/app/services/loading.service';
 
 @Component({
   selector: 'app-payment',
   templateUrl: './payment.component.html',
-  styleUrls: ['./payment.component.css']
+  styleUrls: ['./payment.component.css'],
+  host: {
+    '[@flyInOut]': 'true',
+    'style': 'display: block;'
+  },
+  animations: [flyInOut()]
 })
 export class PaymentComponent implements OnInit {
   paymentForm:FormGroup;
@@ -44,7 +52,7 @@ export class PaymentComponent implements OnInit {
     { value: '11', name: 'November - 11' },
     { value: '12', name: 'December - 12' }
   ]
-  constructor(private builder:FormBuilder,private flightService:FlightService,private modalService:NgbModal) { }
+  constructor(private builder:FormBuilder,private flightService:FlightService,private modalService:NgbModal,private loader:LoadingService) { }
 
   ngOnInit() {
     this.paymentForm = this.builder.group({
@@ -63,20 +71,22 @@ export class PaymentComponent implements OnInit {
       console.error(this.paymentForm.errors);
       return;
     }
-    this.flightService.bookTicket()
+    this.loader.show();
+    this.flightService.bookTicket().pipe(delay(1000))
     .subscribe(data=>{
       console.log(data);
       this.flightService.setBookedTicket(data);
+      this.loader.hide();
       this.paySuccess();
     },err=>{
+      this.loader.hide();
       console.log(err);
     })
   }
 
   paySuccess()
   {
-    const modal = this.modalService.open(PaymentSuccessComponent,{centered:true})
-    
+    const modal = this.modalService.open(PaymentSuccessComponent,{centered:true})    
   }
 
 }

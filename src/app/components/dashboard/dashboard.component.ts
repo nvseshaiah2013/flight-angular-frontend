@@ -1,26 +1,26 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Flight } from 'src/app/models/flight.model';
 import { FlightService } from 'src/app/modules/flight/flight.service';
+import { LoadingService } from 'src/app/services/loading.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent implements OnInit, OnDestroy {
+  show:boolean = false;  
+  constructor(private loader:LoadingService) { }
 
-  
-  constructor() { }
-
-  ngOnInit(): void {
-   // this.onFlightSelected();
+  private subscription:Subscription;
+  ngOnInit(): void {  
+    this.subscription = this.loader.getState().subscribe(status=>{
+      this.show = status;
+    })
   }
-  // onFlightSelected()
-  // {
-  //   this.service.flightSelected.subscribe(data=>{
-  //       this.selectedFlight = data;
-  //   },err=>{
-  //     console.log(err);
-  //   })
-  // }
+
+  ngOnDestroy():void{
+    this.subscription.unsubscribe();
+  }
 }
