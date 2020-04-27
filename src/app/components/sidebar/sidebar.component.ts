@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/modules/user/user.service';
 import { faGlobeAsia } from '@fortawesome/free-solid-svg-icons';
-
+import { User } from 'src/app/models/user.model';
+import { faListAlt } from '@fortawesome/free-regular-svg-icons';
+import { faSearch, faUserTie, faTicketAlt} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-sidebar',
@@ -10,14 +12,17 @@ import { faGlobeAsia } from '@fortawesome/free-solid-svg-icons';
 })
 export class SidebarComponent implements OnInit {
 
-  currentUser:any;
+  currentUser:User;
   faGlobeAsia = faGlobeAsia;
-
+  faUserTie = faUserTie;
+  faSearch = faSearch;
+  faListAlt = faListAlt;
+  faTicketAlt = faTicketAlt;
   constructor(private service:UserService) {
-    this.getUser();
-   }
-
+  }
+  
   ngOnInit(): void {
+    this.getUser();
       
   }
   getUser()

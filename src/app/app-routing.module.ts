@@ -4,6 +4,7 @@ import { WelcomeComponent } from './components/welcome/welcome.component';
 import { AuthGuardService } from './services/auth-guard.service';
 import { LoginGuardService } from './services/login-guard.service';
 import { NotFoundComponent } from './components/not-found/not-found.component';
+import { ServerErrorComponent } from './components/server-error/server-error.component';
 
 
 const routes: Routes = [
@@ -12,12 +13,13 @@ const routes: Routes = [
   {path:'dashboard',loadChildren:()=>import('./modules/flight/flight.module').then(f=>f.FlightModule),canLoad:[AuthGuardService]},
   {path:'dashboard',loadChildren:()=>import('./modules/ticket/ticket.module').then(t=>t.TicketModule),canLoad:[AuthGuardService]},
   {path:'not-found',component:NotFoundComponent},
+  {path:'error',component:ServerErrorComponent},
   {path:'',redirectTo:'/home',pathMatch:'full'},
   {path:'**',redirectTo:'/not-found'}
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes,{onSameUrlNavigation:'reload'})],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import {FormGroup,FormBuilder,Validators} from '@angular/forms';
 import { FlightService } from '../flight.service';
 import { flyInOut } from '../../../animations/route.animation';
+import { PassengerService } from '../passenger.service';
+import { faPlusSquare, faHeart } from '@fortawesome/free-regular-svg-icons'
+import { faBroom } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-passenger-detail',
@@ -14,10 +17,13 @@ import { flyInOut } from '../../../animations/route.animation';
   animations: [flyInOut()]
 })
 export class PassengerDetailComponent implements OnInit {
-
+  faPlusSquare = faPlusSquare;
+  faBroom = faBroom;
+  faHeart = faHeart;
   passengerForm:FormGroup;
   submitted:boolean = false;
-  constructor(private builder:FormBuilder,private flightService:FlightService) { }
+  add:boolean = true;
+  constructor(private builder:FormBuilder,private flightService:FlightService,private passengerService:PassengerService) { }
 
   ngOnInit() {
     this.passengerForm = this.builder.group({
@@ -35,6 +41,8 @@ export class PassengerDetailComponent implements OnInit {
     {
       return;
     }
+    if(this.add)
+    this.passengerService.savePassenger(this.passengerForm.value).subscribe(data=>{},err=>{});
     this.flightService.addPassenger(this.passengerForm.value);
     
   }

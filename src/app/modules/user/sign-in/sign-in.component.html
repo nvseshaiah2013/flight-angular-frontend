@@ -159,6 +159,23 @@
                         </div>
                     </div>
                 </div>
+                <div class="form-group row">
+                    <label for="gender" class="text-md-right col-10 col-md-3 d-none d-md-block">Gender</label>
+                    <div class="offset-1 offset-md-0 col-10 col-md-7">
+                        <select formControlName="gender" id="gender" class="form-control"> 
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Others">Others</option>
+                        </select>
+                        <div
+                            *ngIf="(signInForm.controls.gender.touched || signInForm.controls.gender.dirty || submitted) && signInForm.controls.gender.errors">
+                            <div class="badge badge-danger badge-pill" *ngIf="signInForm.controls.gender.errors.required">
+                                Gender is a Required Field!
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
                 <div class="row">
 
                     <button type="submit" class="btn btn-info offset-1 col-10 offset-md-2 col-md-8 my-3">

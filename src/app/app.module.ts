@@ -17,6 +17,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { JwtModule } from '@auth0/angular-jwt';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { LoadingComponent } from './components/loading/loading.component';
+import { ServerErrorComponent } from './components/server-error/server-error.component';
 
 export function tokenGetter()
 {
@@ -33,7 +34,8 @@ export function tokenGetter()
     ContactComponent,
     FooterComponent,
     NotFoundComponent,
-    LoadingComponent
+    LoadingComponent,
+    ServerErrorComponent
   ],
   imports: [
     BrowserModule,

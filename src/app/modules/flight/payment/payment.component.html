@@ -9,13 +9,13 @@
 
                 <input type="text" formControlName="name" id="name" placeholder="Enter Name." class="form-control" />
 
-                <div *ngIf="submitted && paymentForm.controls.name.errors">
-                    <div *ngIf="submitted && paymentForm.controls.name.errors.required"
+                <div *ngIf="(paymentForm.controls.name.touched || paymentForm.controls.name.dirty || submitted) && paymentForm.controls.name.errors">
+                    <div *ngIf="paymentForm.controls.name.errors.required"
                         class="mt-1 ml-2 badge badge-pill badge-danger">
                         Name field is required !
                     </div>
                     <div class="mt-1 ml-2 badge badge-pill badge-danger"
-                        *ngIf="(paymentForm.controls.name.touched || paymentForm.controls.nmae.dirty || submitted) && paymentForm.controls.name.errors.pattern">
+                        *ngIf="paymentForm.controls.name.errors.pattern">
                         Name must contain characters only
                     </div>
                 </div>
@@ -27,13 +27,13 @@
 
                 <input type="text" formControlName="cardNo" id="cardNo" placeholder="Enter Card Number"
                     class="form-control">
-                <div *ngIf="submitted && paymentForm.controls.cardNo.errors">
+                <div *ngIf="(paymentForm.controls.cardNo.touched || paymentForm.controls.cardNo.dirty || submitted) && paymentForm.controls.cardNo.errors">
                     <div class="mt-1 ml-2 badge badge-pill badge-danger"
-                        *ngIf="(paymentForm.controls.cardNo.touched || paymentForm.controls.cardNo.dirty || submitted) && paymentForm.controls.cardNo.errors.required">
+                        *ngIf="paymentForm.controls.cardNo.errors.required">
                         Card Number is Required!
                     </div>
                     <div class="mt-1 ml-2 badge badge-pill badge-danger"
-                        *ngIf="(paymentForm.controls.cardNo.touched || paymentForm.controls.cardNo.dirty || submitted) && paymentForm.controls.cardNo.errors.pattern">
+                        *ngIf="paymentForm.controls.cardNo.errors.pattern">
                         Card Must contain 16 digits
                     </div>
                 </div>
@@ -59,9 +59,9 @@
                                 <option [ngValue]="m.value" *ngFor="let m of months;">{{m.name}}</option>
                             </select>
                         </div>
-                                <div *ngIf="submitted && paymentForm.controls.month.errors">
+                                <div *ngIf="(paymentForm.controls.month.touched || paymentForm.controls.month.dirty || submitted) && paymentForm.controls.month.errors">
                                     <div class="mt-1 ml-1 badge badge-pill badge-danger"
-                                        *ngIf="(paymentForm.controls.month.touched || paymentForm.controls.month.dirty || submitted) && paymentForm.controls.month.errors.required">
+                                        *ngIf="paymentForm.controls.month.errors.required">
                                         Expiry month is Required!
                                     </div>
                                 </div>
@@ -80,7 +80,7 @@
                         </div>
                                 <div *ngIf="(paymentForm.controls.year.touched || paymentForm.controls.year.dirty || submitted) && paymentForm.controls.year.errors">
                                     <div class="mt-1 ml-1 badge badge-pill badge-danger"
-                                        *ngIf="submitted && paymentForm.controls.year.errors.required">
+                                        *ngIf="paymentForm.controls.year.errors.required">
                                         Expiry year is Required!
                                     </div>
                                 </div>
@@ -103,13 +103,13 @@
                             ngbPopover="CVV is a 3 digit secret code found behind the debit card"> ? </button>
                     </div>
                 </div>
-                <div *ngIf="submitted && paymentForm.controls.cvv.errors">
+                <div *ngIf="(paymentForm.controls.cvv.touched || paymentForm.controls.cvv.dirty || submitted) && paymentForm.controls.cvv.errors">
                     <div class="ml-2 mt-1 badge badge-pill badge-danger"
-                        *ngIf="(paymentForm.controls.cvv.touched || paymentForm.controls.cvv.dirty || submitted) && paymentForm.controls.cvv.errors.required">
+                        *ngIf="paymentForm.controls.cvv.errors.required">
                         CVV is Required
                     </div>
                     <div class="ml-2 mt-1 badge badge-pill badge-danger"
-                        *ngIf="submitted && paymentForm.controls.cvv.errors.pattern">
+                        *ngIf="paymentForm.controls.cvv.errors.pattern">
                         CVV must be of 3 Digits
                     </div>
                 </div>

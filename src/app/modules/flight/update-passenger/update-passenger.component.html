@@ -1,40 +1,23 @@
+
 <div class="container-fluid">
-    <div class="row">
-        <div class="col-12 offset-md-8 col-md-4 text-md-right">
-            <a class="btn btn-primary btn-block my-3" routerLink="/dashboard/passenger-list">Choose From Favourites <fa-icon [icon]="faHeart" class="text-danger"></fa-icon></a>
-        </div>
+    <div class="modal-header font-weight-bold text-primary">
+        Edit Passenger <fa-icon [icon]="faEdit"></fa-icon>
     </div>
-</div>
 
-<div class="container-fluid">
-    <h3 class="card-header mb-5 text-center">
-
-        Add Passenger
-
-    </h3>
-</div>
-<div class="container-fluid">
-
-    <form [formGroup]="passengerForm" (ngSubmit)="addPassengerForm()">
+    <form [formGroup]="passengerForm" (ngSubmit)="editPassengerForm()" class="modal-body">
+        <input type="number" formControlName="passenger_id" [hidden]="true" />
+        <input type="number" formControlName="isValid" [hidden]="true" />
         <div class="form-group row">
-            <label for="name" class="col-12 col-md-3">Name: </label>
-            <div class="col-12 col-md-9">
-                <input type="text" formControlName="name" id="name" class="form-control" placeholder="Enter Name" />
-                <div
-                    *ngIf="(passengerForm.controls.name.dirty || passengerForm.controls.name.touched || submitted) && passengerForm.controls.name.errors">
-                    <div class="badge badge-pill badge-danger" *ngIf="passengerForm.controls.name.errors.required">
-                        Name is Required!
-                    </div>
-                    <div class="badge badge-pill badge-danger" *ngIf="passengerForm.controls.name.errors.pattern">
-                        Name can only contain characters!
-                    </div>
-                </div>
+            <label for="name" class="col-12 col-md-3 font-weight-bold">Name: </label>
+            <div class="col-12 col-md-9 font-weight-bold">
+                {{ passengerForm.controls.name.value }}
+                <input type="text" formControlName="name" id="name" class="form-control" placeholder="Enter Name" [hidden]="true" />
             </div>
         </div>
         <div class="form-group row">
-            <label for="age" class="col-12 col-md-3">Age: </label>
+            <label for="age" class="col-12 col-md-3 font-weight-bold">Age: </label>
             <div class="col-12 col-md-9">
-                <input type="text" formControlName="age" id="age" class="form-control" placeholder="Enter Age">
+                <input type="text" formControlName="age" id="age" class="form-control" placeholder="Enter Age">                
                 <div
                     *ngIf="(passengerForm.controls.age.dirty || passengerForm.controls.age.touched || submitted) && passengerForm.controls.age.errors">
                     <div class="badge badge-pill badge-danger" *ngIf="passengerForm.controls.age.errors.required">
@@ -53,25 +36,19 @@
             </div>
         </div>
         <div class="form-group row">
-            <label for="gender" class="col-12 col-md-3">Gender: </label>
-            <div class="col-12 col-md-9">
-
-                <select formControlName="gender" id="gender" class="form-control">
+            <label for="gender" class="col-12 col-md-3 font-weight-bold">Gender: </label>
+            <div class="col-12 col-md-9 font-weight-bold">
+                {{ passengerForm.controls.gender.value }}
+                <select formControlName="gender" id="gender" class="form-control" [hidden]="true">
                     <option value="Male">Male</option>
                     <option value="Female">Female</option>
                     <option value="Other">Other</option>
                 </select>
-                <div
-                    *ngIf="(passengerForm.controls.gender.dirty || passengerForm.controls.gender.touched || submitted) && passengerForm.controls.gender.errors">
-                    <div class="badge badge-pill badge-danger" *ngIf="passengerForm.controls.gender.errors.required">
-                        Gender should be selected!
-                    </div>
-                </div>
             </div>
         </div>
 
         <div class="form-group row">
-            <label for="idType" class="col-12 col-md-3">Type Of Id: </label>
+            <label for="idType" class="col-12 col-md-3 font-weight-bold">Type Of Id: </label>
             <div class="col-12 col-md-9">
 
                 <select formControlName="idType" id="idType" class="form-control">
@@ -89,7 +66,7 @@
             </div>
         </div>
         <div class="form-group row">
-            <label for="idNo" class="col-12 col-md-3">Id Serial No. : </label>
+            <label for="idNo" class="col-12 col-md-3 font-weight-bold">Identity No</label>
             <div class="col-12 col-md-9">
 
                 <input type="text" formControlName="idNo" id="idNo" class="form-control" placeholder="Enter Id No." />
@@ -104,23 +81,20 @@
                 </div>
             </div>
         </div>
-        <div class="form-group row">
-            <div class="offset-md-3 col-12 col-md-9">
-                <input type="checkbox" [(ngModel)]="add" [ngModelOptions]="{standalone: true}" checked/>
-                <label for="checkbox">Add this passenger to My Favourites As Well.</label>
-            </div>
-        </div>
-        <div class="row mt-5">
-            <div class="col-md-6 col-12 text-md-right">
-
-                <button type="submit" class="btn btn-primary"> Add Passenger <fa-icon [icon]="faPlusSquare"></fa-icon></button>
-            </div>
-            <div class="col-md-6 col-12">
-
-                <button type="reset" class="btn btn-danger">Reset <fa-icon [icon]="faBroom"></fa-icon></button>
-            </div>
-        </div>
+        
+            
+                <button type="submit" class="btn btn-success btn-block btn-lg"> Edit Passenger <fa-icon [icon]="faEdit"></fa-icon></button>
+           
+            
+        
     </form>
-
+    <div class="modal-footer">
+        <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+            <span aria-hidden="true">
+                Close 
+                <fa-icon [icon]="faTimesCircle"></fa-icon>
+            </span>
+        </button>
+    </div>
 
 </div>

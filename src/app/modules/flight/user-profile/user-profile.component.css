@@ -1,0 +1,10 @@
+.bullet{
+    display: inline-block;
+    background-color: rgb(102, 250, 243);
+    width: 30px;
+    height: 30px;
+}
+.bullet:hover{
+    width: 40px;
+    transition: width 0.5s;
+}

@@ -1,19 +1,22 @@
  .side-card{
        
     border-radius: 4px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
     font-family: 'Sniglet', cursive;
     padding:1rem;
 }
 
 
-
-.fit-content{
-    font-size: 1.5vw;
-    display: block;
-}
-
 .img-fluid{
     border-radius: 50%;
-    width: min-content;
+}
+
+
+
+a{
+    color:rgb(94, 94, 94);
+}
+a:hover{
+    text-decoration: none;
+    color:rgb(0,0,0);
 }

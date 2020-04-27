@@ -2,20 +2,42 @@
     <div class="row">
         <div class="col-12">
             <div class="side-card d-none d-md-block">
-                <img src="assets/images/profile.png" alt="Profile Photo" class="img-fluid pb-3">
+                <img src="assets/images/profile.png" alt="Profile Photo" class="img-fluid py-3 px-lg-5">
                 <hr>
-                <div class="p-1" *ngIf="currentUser">
+                <ul class="list-group" *ngIf="currentUser">
 
-                    <div class="font-weight-bold fit-content pl-1">
+                    <li class="font-weight-bold list-group-item list-group-item-action text-center">
                         {{ currentUser.name  }}
-                    </div>
-                    <div class="text-muted fit-content pl-1">
+                    </li>
+                    <li class="text-muted list-group-item text-center list-group-item-action">
                         {{ currentUser.username  }}
-                    </div>
-                    <div class="fit-content pl-1">
+                    </li>
+                    <li class="list-group-item list-group-item-action text-center">
                         {{currentUser.age  }} years on <fa-icon [icon]="faGlobeAsia"></fa-icon>
-                    </div>
-                </div>
+                    </li>
+                </ul>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item mx-auto">
+                        <a routerLink="/dashboard/search-flight">
+                            Search Flight <fa-icon [icon]="faSearch"></fa-icon>
+                        </a>
+                    </li>
+                    <li class="list-group-item mx-auto">
+                        <a routerLink="/dashboard/ticket-list">
+                            View Tickets <fa-icon [icon]="faTicketAlt"></fa-icon>
+                        </a>
+                    </li>
+                    <li class="list-group-item mx-auto">
+                        <a routerLink="/dashboard/passenger-list">
+                            My Passenger List <fa-icon [icon]="faListAlt"></fa-icon>
+                        </a>
+                    </li>
+                    <li class="list-group-item mx-auto">
+                        <a routerLink="/dashboard/user-profile">
+                            My Profile <fa-icon [icon]="faUserTie"></fa-icon>
+                        </a>
+                    </li>
+                </ul>
             </div>
         </div>
 

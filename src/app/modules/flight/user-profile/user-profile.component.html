@@ -1,0 +1,15 @@
+<div class="container-fluid" *ngIf="user">
+    <h4 class="card-header bg-dark text-white mt-5 font-weight-bold text-center">
+        User Profile
+    </h4>
+    <div class="offset-md-3 col-md-6 col-12 my-3">
+
+        <p class="lead font-weight-bold"> <span class="bullet"></span> Name: {{ user.name }} </p>
+        <p class="lead font-weight-bold"> <span class="bullet"></span> Age: {{ user.age }} </p>
+        <p class="lead font-weight-bold"> <span class="bullet"></span> Username: {{ user.username  }} </p>
+        <p class="lead font-weight-bold"> <span class="bullet"></span> Gender: {{ user.gender }} </p>
+    </div>
+    <div class="card-footer">
+        <a routerLink="/dashboard/ticket-list" class="btn btn-success"> View Booked Tickets </a>
+    </div>
+</div>

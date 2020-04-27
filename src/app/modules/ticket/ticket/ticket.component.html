@@ -8,7 +8,7 @@
 
                 <h3 class="card-header header text-center bg-dark text-white">
     
-                    {{ ticket.flight.flight_name }}
+                    {{ ticket.flight.flight_name }} - {{ ticket.status}}
                 </h3>
                 <div class="card-body">
                     <div class="row">
@@ -16,14 +16,13 @@
                             <p class="lead">Ticket Id: {{ticket.ticket_id }}</p>
                             <p class="lead">Source : {{ ticket.flight.source }}</p>
                             <p class="lead">Destination : {{ ticket.flight.destination }} </p>
-                            <p class="lead">Status: {{ticket.status }}</p>
+                            <p class="lead">Cargo Baggage: {{ticket.flight.cargobaggage}} KG</p>
                         </div>
                         <div class="col-12 col-md-6">
                             <p class="lead">Price: <fa-icon [icon]="faRupeeSign"></fa-icon> {{ticket.flight.price }}</p>
-                            <p class="lead">Boarding Date: {{ticket.flight.date | date:'fullDate'}}</p>
-                            <p class="lead">Boarding Time: {{ticket.flight.date | date:'shortTime'}}</p>
-                            <p class="lead">CheckIn Baggage : {{ticket.flight.checkinbaggage}}</p>
-                            <p class="lead">Cargo Baggage: {{ticket.flight.cargobaggage}}</p>
+                            <p class="lead">Date: {{ticket.flight.date | date:'fullDate'}}</p>
+                            <p class="lead">Time: {{ticket.flight.date | date:'shortTime'}}</p>
+                            <p class="lead">CheckIn Baggage : {{ticket.flight.checkinbaggage}} KG</p>                           
                         </div>
     
                     </div>

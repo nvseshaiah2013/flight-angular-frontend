@@ -46,7 +46,6 @@ export class LoginComponent implements OnInit {
       this.router.navigate(['/dashboard/search-flight']);
 
     },err=>{
-      console.log(err);
       this.errors = err.error;
       this.error = true;
       this.show = true;

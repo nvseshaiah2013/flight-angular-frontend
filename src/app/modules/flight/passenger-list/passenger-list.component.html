@@ -1,0 +1,36 @@
+<div class="container-fluid">
+    <div class="card-header bg-dark text-white font-weight-bold text-center lead mb-2">
+        Favourite Passenger List
+    </div>
+    <div class="table-responsive">
+
+        <table class="table table-hover table-striped table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Age</th>
+                    <th scope="col">Gender</th>
+                    <th scope="col">Type Of Id</th>
+                    <th scope="col">Id Number</th>
+                    <th colspan="2" *ngIf="!select">Actions</th>
+                    <th *ngIf="select" scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let passenger of passengerList; let i=index;">
+                    <th scope="col">{{i+1}}</th>
+                    <td>{{passenger.name}}</td>
+                    <td>{{passenger.age}}</td>
+                    <td>{{passenger.gender}}</td>
+                    <td>{{passenger.idType}}</td>
+                    <td>{{passenger.idNo}}</td>
+                    <td *ngIf="!select"><button class="btn btn-secondary" (click)="edit(passenger)">Edit <fa-icon [icon]="faEdit"></fa-icon></button></td>
+                    <td *ngIf="!select"><button class="btn btn-danger" (click)="delete(passenger.passenger_id)">Delete <fa-icon [icon]="faTrashAlt"></fa-icon></button></td>
+                    <td *ngIf="select && passenger.isValid==1"><button class="btn btn-success" (click)="onSelect(passenger)">Select <fa-icon [icon]="faMousePointer"></fa-icon></button></td>
+                    <td *ngIf="select && passenger.isValid==0"><button class="btn btn-info" (click)="edit(passenger)">Update Id</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

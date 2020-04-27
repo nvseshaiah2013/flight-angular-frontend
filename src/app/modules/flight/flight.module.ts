@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FlightRoutingModule } from './flight-routing.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { SearchFlightComponent } from './search-flight/search-flight.component';
@@ -14,6 +14,9 @@ import { PaymentSuccessComponent } from './payment-success/payment-success.compo
 import { ViewTicketComponent } from './view-ticket/view-ticket.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FlightListComponent } from './flight-list/flight-list.component';
+import { PassengerListComponent } from './passenger-list/passenger-list.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
+import { UpdatePassengerComponent } from './update-passenger/update-passenger.component';
 
 
 @NgModule({
@@ -25,16 +28,17 @@ import { FlightListComponent } from './flight-list/flight-list.component';
     PaymentComponent, 
     PaymentSuccessComponent, 
     ViewTicketComponent, 
-    FlightListComponent],
+    FlightListComponent, PassengerListComponent, UserProfileComponent, UpdatePassengerComponent],
   imports: [
     CommonModule,
     FlightRoutingModule,
     FontAwesomeModule,
     ReactiveFormsModule,
+    FormsModule,
     NgbModule,
     HttpClientModule
   ],
-  entryComponents:[SelectedFlightComponent,PaymentSuccessComponent],
+  entryComponents:[SelectedFlightComponent,PaymentSuccessComponent,UpdatePassengerComponent],
   providers: []
 })
 export class FlightModule { }

@@ -6,13 +6,14 @@ import { BookingGaurdService } from './services/booking-gaurd.service';
 import { BookingRequest } from 'src/app/models/booking-request.model';
 import { BehaviorSubject } from 'rxjs';
 import { Ticket } from 'src/app/models/ticket.model';
+import { Passenger } from 'src/app/models/passenger.model';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class FlightService {
-  baseUrl = 'http://localhost:8080/flights';
+  private baseUrl = 'http://localhost:8080/flights';
   constructor(private http: HttpClient, private router: Router) { }
   private selectedFlight: Flight = null;
   private bookingRequest: BookingRequest = undefined;
@@ -47,6 +48,10 @@ export class FlightService {
   getSelectedFlight()
   {
     return this.selectedFlight;
+  }
+
+  setSelectedFlight(){
+    this.selectedFlight = null;
   }
   isBookingDetailComplete() {
     return this.bookingRequest !== undefined;

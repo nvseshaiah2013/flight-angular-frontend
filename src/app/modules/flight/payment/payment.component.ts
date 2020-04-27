@@ -68,7 +68,6 @@ export class PaymentComponent implements OnInit {
     this.submitted = true;
     if(this.paymentForm.invalid)
     {
-      console.error(this.paymentForm.errors);
       return;
     }
     this.loader.show();
@@ -77,10 +76,10 @@ export class PaymentComponent implements OnInit {
       console.log(data);
       this.flightService.setBookedTicket(data);
       this.loader.hide();
+      this.flightService.setSelectedFlight();
       this.paySuccess();
     },err=>{
       this.loader.hide();
-      console.log(err);
     })
   }
 
