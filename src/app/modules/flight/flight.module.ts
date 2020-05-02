@@ -15,7 +15,6 @@ import { ViewTicketComponent } from './view-ticket/view-ticket.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FlightListComponent } from './flight-list/flight-list.component';
 import { PassengerListComponent } from './passenger-list/passenger-list.component';
-import { UserProfileComponent } from './user-profile/user-profile.component';
 import { UpdatePassengerComponent } from './update-passenger/update-passenger.component';
 
 
@@ -28,7 +27,7 @@ import { UpdatePassengerComponent } from './update-passenger/update-passenger.co
     PaymentComponent, 
     PaymentSuccessComponent, 
     ViewTicketComponent, 
-    FlightListComponent, PassengerListComponent, UserProfileComponent, UpdatePassengerComponent],
+    FlightListComponent, PassengerListComponent, UpdatePassengerComponent],
   imports: [
     CommonModule,
     FlightRoutingModule,

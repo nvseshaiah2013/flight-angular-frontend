@@ -9,7 +9,7 @@ import { BookingGaurdService } from './services/booking-gaurd.service';
 import { PaymentGuardService } from './services/payment-guard.service';
 import { TicketGaurdService } from './services/ticket-gaurd.service';
 import { PassengerListComponent } from './passenger-list/passenger-list.component';
-import { UserProfileComponent } from './user-profile/user-profile.component';
+
 import { UpdatePassengerComponent } from './update-passenger/update-passenger.component';
 
 
@@ -21,8 +21,7 @@ const routes: Routes = [{
     {path:'view-ticket',component:ViewTicketComponent,canActivate:[TicketGaurdService]},
     {path:'passenger-detail',component:PassengerDetailComponent,canActivate:[BookingGaurdService]},
     {path:'passenger-list',component:PassengerListComponent},
-    {path:'passenger-update',component:UpdatePassengerComponent},
-    {path:'user-profile',component:UserProfileComponent}
+    {path:'passenger-update',component:UpdatePassengerComponent}
   ]
 }];
 

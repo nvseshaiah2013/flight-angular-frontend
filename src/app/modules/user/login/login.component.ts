@@ -16,7 +16,7 @@ import { faEye, faEyeSlash} from '@fortawesome/free-solid-svg-icons';
   animations: [flyUpDown()]
 })
 export class LoginComponent implements OnInit {
-
+  loading:boolean = false;
   loginForm:FormGroup;
   submitted:boolean = false;
   error:boolean = false;
@@ -40,12 +40,15 @@ export class LoginComponent implements OnInit {
     {
       return;
     }
+    this.loading = true;
     this.service.loginUser(this.loginForm.controls.username.value,this.loginForm.controls.password.value)
     .subscribe(data=>{
+      this.loading = false;
       localStorage.setItem('$F#R%S_ToKeN',data['jwt']);
       this.router.navigate(['/dashboard/search-flight']);
 
     },err=>{
+      this.loading = false;
       this.errors = err.error;
       this.error = true;
       this.show = true;

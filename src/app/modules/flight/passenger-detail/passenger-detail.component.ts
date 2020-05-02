@@ -1,10 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import {FormGroup,FormBuilder,Validators} from '@angular/forms';
-import { FlightService } from '../flight.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { faPlusSquare } from '@fortawesome/free-regular-svg-icons';
+import { faBroom, faHeart } from '@fortawesome/free-solid-svg-icons';
 import { flyInOut } from '../../../animations/route.animation';
+import { FlightService } from '../flight.service';
 import { PassengerService } from '../passenger.service';
-import { faPlusSquare, faHeart } from '@fortawesome/free-regular-svg-icons'
-import { faBroom } from '@fortawesome/free-solid-svg-icons';
+import { IdentityValidator } from '../identity.validation';
+import { Flight } from 'src/app/models/flight.model';
+
 
 @Component({
   selector: 'app-passenger-detail',
@@ -20,31 +23,62 @@ export class PassengerDetailComponent implements OnInit {
   faPlusSquare = faPlusSquare;
   faBroom = faBroom;
   faHeart = faHeart;
-  passengerForm:FormGroup;
-  submitted:boolean = false;
-  add:boolean = true;
-  constructor(private builder:FormBuilder,private flightService:FlightService,private passengerService:PassengerService) { }
+  passengerForm: FormGroup;
+  submitted: boolean = false;
+  add: boolean = true;
+  flight:Flight;
+  genders = [
+    { value: 'Male', name: 'Male ' },
+    { value: 'Female', name: 'Female' },
+    { value: 'Other', name: 'Other' }]
+  identities = [
+    { value: 'PAN', name: 'PAN Card' },
+    { value: 'Aadhar', name: 'Aadhar Card' },
+    { value: 'DL', name: 'Driving License' },
+    { value: 'Passport', name: 'Passport' }]
+  constructor(private builder: FormBuilder, private flightService: FlightService, private passengerService: PassengerService) { }
 
   ngOnInit() {
     this.passengerForm = this.builder.group({
-      name:['',[Validators.required,Validators.pattern("[a-zA-Z ]{2,}")]],
-      age:['',[Validators.required,Validators.pattern("[0-9]{1,}"),Validators.min(5),Validators.max(120)]],
-      gender:['',Validators.required],
-      idType:['',Validators.required],
-      idNo:['',[Validators.required,Validators.pattern("[A-Za-z0-9]{5,}")]]
+      name: ['', [Validators.required, Validators.pattern("[a-zA-Z ]{2,}")]],
+      age: ['', [Validators.required, Validators.pattern("[0-9]{1,}"), Validators.min(5), Validators.max(122)]],
+      gender: ['', Validators.required],
+      idType: ['', Validators.required],
+      idNo: ['', [Validators.required]]
+      
     });
-    
+    this.flight = this.flightService.getSelectedFlight();
   }
-  addPassengerForm(){
+  addPassengerForm() {
     this.submitted = true;
-    if(this.passengerForm.invalid)
-    {
+    if (this.passengerForm.invalid) {
       return;
     }
-    if(this.add)
-    this.passengerService.savePassenger(this.passengerForm.value).subscribe(data=>{},err=>{});
+    console.log(this.passengerForm.value);
+    if (this.add)
+      this.passengerService.savePassenger(this.passengerForm.value).subscribe(data => { }, err => { });
     this.flightService.addPassenger(this.passengerForm.value);
-    
+
+  }
+
+ 
+  onIdentityChange(e){
+    if(e.target.value == 'PAN'){
+      this.passengerForm.controls['idNo'].setValidators([Validators.required,IdentityValidator.isValidPAN]);
+      this.passengerForm.controls['idNo'].updateValueAndValidity();
+    }
+    else if(e.target.value == 'Aadhar'){
+      this.passengerForm.controls['idNo'].setValidators([Validators.required, IdentityValidator.isValidAadhar]);
+      this.passengerForm.controls['idNo'].updateValueAndValidity();
+    }
+    else if(e.target.value == 'Passport'){
+      this.passengerForm.controls['idNo'].setValidators([Validators.required, IdentityValidator.isValidPassport]);
+      this.passengerForm.controls['idNo'].updateValueAndValidity();
+    }
+    else if(e.target.value == 'DL'){
+      this.passengerForm.controls['idNo'].setValidators([Validators.required, IdentityValidator.isValidDrivingLicense]);
+      this.passengerForm.controls['idNo'].updateValueAndValidity();
+    }
   }
 
 }

@@ -8,7 +8,7 @@
   <div [ngbCollapse]="isMenuCollapsed" class="collapse navbar-collapse  justify-content-end">
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a routerLink="/dashboard/search-flight" class="nav-link" (click)="isMenuCollapsed = true" routerLinkActive="active">Book Flight</a>
+        <a routerLink="/dashboard/search-flight" class="nav-link" (click)="isMenuCollapsed = true" routerLinkActive="active" (click)="resetFlight()"> Book Flight </a>
       </li>
       <li class="nav-item">
         <a class="nav-link" routerLink="/dashboard/ticket-list" (click)="isMenuCollapsed = true" routerLinkActive="active">My Tickets</a>

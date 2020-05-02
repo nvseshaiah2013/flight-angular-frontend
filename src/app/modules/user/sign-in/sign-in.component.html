@@ -28,7 +28,7 @@
                                 Name is a Required Field!
                             </div>
                             <div class="badge badge-danger badge-pill" *ngIf="signInForm.controls.name.errors.pattern">
-                                Name must only contain characters.
+                                Name must only contain alphabets!
                             </div>
                         </div>
                     </div>
@@ -36,7 +36,7 @@
                 <div class="form-group row">
                     <label for="username" class="text-md-right col-10 col-md-3 d-none d-md-block">Username</label>
                     <div class="offset-1 offset-md-0 col-10 col-md-7">
-                        <input type="text" formControlName="username" id="username" placeholder="Enter Username."
+                        <input type="text" formControlName="username" id="username" placeholder="Enter Email Id."
                             class="form-control">
                         <div
                             *ngIf="(signInForm.controls.username.touched || signInForm.controls.username.dirty || submitted) && signInForm.controls.username.errors">
@@ -46,7 +46,7 @@
                             </div>
                             <div class="badge badge-danger badge-pill"
                                 *ngIf="signInForm.controls.username.errors.email">
-                                Username must be a E-mail!
+                                Username must be a valid E-mail!
                             </div>
                         </div>
                     </div>
@@ -163,6 +163,7 @@
                     <label for="gender" class="text-md-right col-10 col-md-3 d-none d-md-block">Gender</label>
                     <div class="offset-1 offset-md-0 col-10 col-md-7">
                         <select formControlName="gender" id="gender" class="form-control"> 
+                            <option value="" disabled>Choose Gender</option>
                             <option value="Male">Male</option>
                             <option value="Female">Female</option>
                             <option value="Others">Others</option>
@@ -191,5 +192,13 @@
                 </div>
             </form>
         </div>
+    </div>
+</div>
+
+<div class="loading" *ngIf="loading">
+    <div class="d-flex justify-content-center mar">
+        <div class="spinner-grow" role="status">
+        </div>
+        <span class="lead font-weight-bold ml-2 text-primary">Loading...</span>
     </div>
 </div>

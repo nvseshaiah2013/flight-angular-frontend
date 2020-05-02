@@ -115,10 +115,17 @@
                 </div>
             </div>
         </div>
-        <div class="btn-group btn-block mt-5">
+       <div class="row">
+           <div class="col-12 col-md-6 text-md-right">
 
-            <button type="submit" class="btn btn-success">Pay Amount <fa-icon [icon]="faRupeeSign"></fa-icon> {{ amount }} </button>
-            <button type="reset" class="btn btn-outline-danger" (click)="submitted = false">Reset</button>
+               <button type="submit" class="btn btn-success">Pay Amount <fa-icon [icon]="faRupeeSign"></fa-icon> {{ amount }} </button>
+           </div>
+        <div class="col-12 col-md-6">
+            <button type="reset" class="btn btn-danger" (click)="submitted = false">Reset</button>
+        
         </div>
+       </div>
+
+       
     </form>
 </div>

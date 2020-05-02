@@ -1,3 +1,35 @@
+<div class="container" *ngIf="flight">
+    <div class="card-header bg-dark text-white font-weight-bold lead">
+        <div class="row">
+            <div class="col-12 col-md-3 text-center text-md-left">
+                Choosen Flight
+            </div>
+            <div class="col-12 col-md-3 text-center text-md-left">
+                Price : <fa-icon [icon]="faRupeeSign"></fa-icon> {{ flight.price }}
+            </div>
+            <div class="col-12 col-md-3 text-center text-md-left">
+                Date : <fa-icon [icon]="faCalendar"></fa-icon> {{ flight.date | date:'mediumDate'}}
+            </div>
+            <div class="col-12 col-md-3 text-center text-md-left">
+                Time : <fa-icon [icon]="faBusinessTime"></fa-icon> {{ flight.date | date:'shortTime'}}
+            </div>
+        </div>
+
+    </div>
+    <div class="card-header font-weight-bold mb-3">
+        <div class="row">
+            <div class="col-12 text-center col-md-6 text-md-right">
+                {{ flight.flight_name }} --- {{ flight.flight_code }}
+            </div>
+            <div class="col-12 text-center col-md-6 text-md-left">
+                {{ flight.source }} ---> {{ flight.destination }}
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
 <div class="container-fluid">
     <div class="card-header bg-dark text-white font-weight-bold text-center lead mb-2">
         Favourite Passenger List
@@ -25,10 +57,13 @@
                     <td>{{passenger.gender}}</td>
                     <td>{{passenger.idType}}</td>
                     <td>{{passenger.idNo}}</td>
-                    <td *ngIf="!select"><button class="btn btn-secondary" (click)="edit(passenger)">Edit <fa-icon [icon]="faEdit"></fa-icon></button></td>
-                    <td *ngIf="!select"><button class="btn btn-danger" (click)="delete(passenger.passenger_id)">Delete <fa-icon [icon]="faTrashAlt"></fa-icon></button></td>
-                    <td *ngIf="select && passenger.isValid==1"><button class="btn btn-success" (click)="onSelect(passenger)">Select <fa-icon [icon]="faMousePointer"></fa-icon></button></td>
-                    <td *ngIf="select && passenger.isValid==0"><button class="btn btn-info" (click)="edit(passenger)">Update Id</button></td>
+                    <td *ngIf="!select"><button class="btn btn-secondary" (click)="edit(passenger)">Edit <fa-icon
+                                [icon]="faEdit"></fa-icon></button></td>
+                    <td *ngIf="!select"><button class="btn btn-danger" (click)="delete(passenger.passenger_id)">Delete
+                            <fa-icon [icon]="faTrashAlt"></fa-icon></button></td>
+                    <td *ngIf="select"><button class="btn btn-success" (click)="onSelect(passenger)">Select <fa-icon
+                                [icon]="faMousePointer"></fa-icon></button></td>
+
                 </tr>
             </tbody>
         </table>

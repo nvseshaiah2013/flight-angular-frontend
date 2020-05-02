@@ -6,7 +6,6 @@
 
     <form [formGroup]="passengerForm" (ngSubmit)="editPassengerForm()" class="modal-body">
         <input type="number" formControlName="passenger_id" [hidden]="true" />
-        <input type="number" formControlName="isValid" [hidden]="true" />
         <div class="form-group row">
             <label for="name" class="col-12 col-md-3 font-weight-bold">Name: </label>
             <div class="col-12 col-md-9 font-weight-bold">
@@ -30,7 +29,7 @@
                         Minimum Age should be 5!
                     </div>
                     <div class="badge badge-pill badge-danger" *ngIf="passengerForm.controls.age.errors.max">
-                        Maximum Age should be 120!
+                        Maximum Age should be 122!
                     </div>
                 </div>
             </div>
@@ -40,9 +39,8 @@
             <div class="col-12 col-md-9 font-weight-bold">
                 {{ passengerForm.controls.gender.value }}
                 <select formControlName="gender" id="gender" class="form-control" [hidden]="true">
-                    <option value="Male">Male</option>
-                    <option value="Female">Female</option>
-                    <option value="Other">Other</option>
+                    <option value="" >Choose Gender</option>
+                    <option *ngFor="let gender of genders" value={{gender.value}}>{{gender.name}}</option>
                 </select>
             </div>
         </div>
@@ -51,11 +49,10 @@
             <label for="idType" class="col-12 col-md-3 font-weight-bold">Type Of Id: </label>
             <div class="col-12 col-md-9">
 
-                <select formControlName="idType" id="idType" class="form-control">
-                    <option value="PAN">PAN Card</option>
-                    <option value="Aadhar">Aadhar Card</option>
-                    <option value="Passport">Passport</option>
-                    <option value="DL">Driving License</option>
+                <select formControlName="idType" id="idType" class="form-control" (change)="onIdentityChange($event)">
+                    <option value="">Choose Identity</option>
+                    <option *ngFor="let identity of identities" value={{identity.value}}>{{identity.name}}</option>
+                    
                 </select>
                 <div *ngIf="(passengerForm.controls.idType.dirty || passengerForm.controls.idType.touched || submitted) &&
                     passengerForm.controls.idType.errors">
@@ -75,8 +72,23 @@
                     <div class="badge badge-pill badge-danger" *ngIf="passengerForm.controls.idNo.errors.required">
                         Id Number is Required!
                     </div>
-                    <div class="badge badge-pill badge-danger" *ngIf="passengerForm.controls.idNo.errors.pattern">
-                        Id Number can be Alpha Numeric only(Min Length = 5).
+                    <div class="badge badge-pill badge-danger" *ngIf="passengerForm.controls.idNo.errors.invalidPan">
+                        PAN Number is invalid! (Example PAN: ABCDE1234F)
+                    </div>
+                    <div class="badge badge-pill badge-danger" *ngIf="passengerForm.controls.idNo.errors.invalidPassport">
+                        Passport Number is invalid! (Example Passport: A1234567)
+                    </div>
+                    <div class="text-danger" *ngIf="passengerForm.controls.idNo.errors.invalidDrivingLicense">
+                        Driving License is invalid! (Example Driving License: MH0120201234567)
+                        <ul>
+                            <li> First Two Letters are State Code</li>
+                            <li> Next Two Digits Are Branch Code</li>
+                            <li> Next 4 Digits Are Issue Year </li>
+                            <li> Next 7 Digits Are Driver Profile</li>
+                        </ul>
+                    </div>
+                    <div class="badge badge-pill badge-danger" *ngIf="passengerForm.controls.idNo.errors.invalidAadhar">
+                        Aadhar Number is invalid! (Example Aadhar: 221234567890)
                     </div>
                 </div>
             </div>

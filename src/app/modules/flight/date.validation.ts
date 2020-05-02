@@ -4,6 +4,8 @@ import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 
 
 export function DateValidate(control: FormControl): { [key: string]: boolean } | null {
+    if(control.value == '')
+        return null;
     const value = control.value;
    
     let date = parse(value);

@@ -9,14 +9,18 @@
                             <fa-icon [icon]="faPlaneDeparture"></fa-icon>
                         </button>
                     </div>
-                    <input type="text" formControlName="source" id="source" placeholder="Enter Source" class="form-control" [ngbTypeahead]="searchSource">
+                    <input type="text" formControlName="source" id="source" 
+                    placeholder="Enter Source" class="form-control" [ngbTypeahead]="searchSource" (keyup)="findSource($event)">
                 </div>
                 <div *ngIf="(searchFlightForm.controls.source.touched || searchFlightForm.controls.source.dirty || submitted) && searchFlightForm.controls.source.errors">
                     <div class="badge badge-pill badge-danger" *ngIf="searchFlightForm.controls.source.errors.required">
                         Source is required!
                     </div>
                     <div class="badge badge-pill badge-danger" *ngIf="searchFlightForm.controls.source.errors.pattern">
-                        Source can only contain characters.
+                        Source can only contain alphabets!
+                    </div>
+                    <div class="badge badge-pill badge-danger" *ngIf="searchFlightForm.controls.source.errors.invalidSource">
+                        It is not a valid Source city!
                     </div>
                 </div>
             </div>
@@ -28,7 +32,8 @@
                             <fa-icon [icon]="faPlaneArrival"></fa-icon>
                         </div>
                     </div>
-                    <input type="text" formControlName="destination" id="destination" placeholder="Enter Destination" class="form-control" [ngbTypeahead]="searchDestination">
+                    <input type="text" formControlName="destination" id="destination" placeholder="Enter Destination" 
+                    class="form-control" [ngbTypeahead]="searchDestination" (keyup)="findDestination($event)">
                 </div>
                 <div
                     *ngIf="(searchFlightForm.controls.destination.touched || searchFlightForm.controls.destination.dirty || submitted) && searchFlightForm.controls.destination.errors">
@@ -36,7 +41,10 @@
                         Destination is required!
                     </div>
                     <div class="badge badge-pill badge-danger" *ngIf="searchFlightForm.controls.destination.errors.pattern">
-                        Destination can only contain characters.
+                        Destination can only contain alphabets!
+                    </div>
+                    <div class="badge badge-pill badge-danger" *ngIf="searchFlightForm.controls.destination.errors.invalidDestination && searchFlightForm.controls.destination.errors.invalidDestination == true">
+                        It not an valid Destination City!
                     </div>
                 </div>
             </div>
@@ -48,7 +56,7 @@
                             <fa-icon [icon]="faCalendarCheck"></fa-icon>
                         </button>
                     </div>
-                    <input class="form-control" placeholder="Date(yyyy-mm-dd)" formControlName="date" ngbDatepicker #d="ngbDatepicker" [minDate]="todayDate">
+                    <input class="form-control" placeholder="Date(yyyy-mm-dd)" formControlName="date" ngbDatepicker #d="ngbDatepicker" [minDate]="todayDate" readonly>
                 </div>
                 <div
                     *ngIf="(searchFlightForm.controls.date.touched || searchFlightForm.controls.date.dirty || submitted) && searchFlightForm.controls.date.errors">

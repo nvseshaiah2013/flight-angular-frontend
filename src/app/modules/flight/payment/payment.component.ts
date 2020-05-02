@@ -73,7 +73,6 @@ export class PaymentComponent implements OnInit {
     this.loader.show();
     this.flightService.bookTicket().pipe(delay(1000))
     .subscribe(data=>{
-      console.log(data);
       this.flightService.setBookedTicket(data);
       this.loader.hide();
       this.flightService.setSelectedFlight();

@@ -18,7 +18,7 @@
                 </ul>
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item mx-auto">
-                        <a routerLink="/dashboard/search-flight">
+                        <a routerLink="/dashboard/search-flight" (click)="resetFlight()">
                             Search Flight <fa-icon [icon]="faSearch"></fa-icon>
                         </a>
                     </li>
@@ -32,11 +32,7 @@
                             My Passenger List <fa-icon [icon]="faListAlt"></fa-icon>
                         </a>
                     </li>
-                    <li class="list-group-item mx-auto">
-                        <a routerLink="/dashboard/user-profile">
-                            My Profile <fa-icon [icon]="faUserTie"></fa-icon>
-                        </a>
-                    </li>
+
                 </ul>
             </div>
         </div>

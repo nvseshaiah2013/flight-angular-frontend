@@ -5,5 +5,4 @@ export class Passenger{
     idNo:string;
     age:number;
     gender:string;
-    isValid:number;
 }

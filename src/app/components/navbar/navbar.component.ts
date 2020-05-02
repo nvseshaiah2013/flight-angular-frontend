@@ -3,6 +3,7 @@ import {faEllipsisH} from '@fortawesome/free-solid-svg-icons';
 import { UserService } from 'src/app/modules/user/user.service';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Router } from '@angular/router';
+import { FlightService } from 'src/app/modules/flight/flight.service';
 
 // const jwt = new JwtHelperService();
 
@@ -16,7 +17,7 @@ export class NavbarComponent implements OnInit {
   faEllipsisH = faEllipsisH;
   username:string  = 'UserA';
   
-  constructor(private user:UserService,private jwt:JwtHelperService) { }
+  constructor(private user:UserService,private jwt:JwtHelperService,private flightService:FlightService) { }
 
   ngOnInit(): void {
     this.username = this.jwt.decodeToken(localStorage.getItem('$F#R%S_ToKeN')).sub.split('@')[0];
@@ -28,5 +29,8 @@ export class NavbarComponent implements OnInit {
     this.user.logOutUser();
   }
 
+  resetFlight(){
+    this.flightService.setSelectedFlight();
+  }
 
 }

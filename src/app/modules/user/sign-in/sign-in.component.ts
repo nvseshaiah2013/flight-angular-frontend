@@ -18,7 +18,7 @@ import { flyUpDown } from '../../../animations/route.animation';
   animations: [flyUpDown()]
 })
 export class SignInComponent implements OnInit {
-
+  loading:boolean = false;
   signInForm: FormGroup;
   submitted: boolean = false;
   errors: any;
@@ -63,13 +63,14 @@ export class SignInComponent implements OnInit {
     if (this.signInForm.invalid) {
       return;
     }
-
+    this.loading = true;
     this.service.addUser(this.signInForm.value).subscribe(data => {
-      console.log(data);
+      this.loading = false;
       this.router.navigate(['user', 'login'])
     }, err => {
       this.error = true;
-      this.show = true;     
+      this.show = true; 
+      this.loading = false;    
       this.errors = err.error; 
     })
 

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl, AbstractControl, ValidatorFn } from '@angular/forms';
 import { faSearchLocation, faCalendarCheck, faPlaneDeparture, faPlaneArrival } from '@fortawesome/free-solid-svg-icons';
 import { FlightService } from '../flight.service';
 import { Flight } from '../../../models/flight.model';
@@ -9,6 +9,7 @@ import { Observable } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map, delay } from 'rxjs/operators';
 import { flyInOut } from '../../../animations/route.animation';
 import { LoadingService } from 'src/app/services/loading.service';
+import { ValueConverter } from '@angular/compiler/src/render3/view/template';
 
 @Component({
   selector: 'app-search-flight',
@@ -18,8 +19,9 @@ import { LoadingService } from 'src/app/services/loading.service';
     '[@flyInOut]': 'true',
     'style': 'display: block;'
   },
-  animations:[flyInOut()]
+  animations: [flyInOut()]
 })
+
 export class SearchFlightComponent implements OnInit {
   faSearchLocation = faSearchLocation;
   searchFlightForm: FormGroup;
@@ -34,7 +36,7 @@ export class SearchFlightComponent implements OnInit {
   todayDate: NgbDate = new NgbDate(this.minDate.getFullYear(), this.minDate.getMonth() + 1, this.minDate.getDate());
   sources: string[] = [];
   destinations: string[] = [];
-  constructor(private builder: FormBuilder, private service: FlightService,private loader:LoadingService) {
+  constructor(private builder: FormBuilder, private service: FlightService, private loader: LoadingService) {
 
   }
 
@@ -46,7 +48,6 @@ export class SearchFlightComponent implements OnInit {
       destination: ['', [Validators.required, Validators.pattern("([a-zA-Z]+[ ]?)+")]],
       date: ['', [Validators.required, DateValidate]]
     });
-
   }
 
   searchSource = (text$: Observable<string>) =>
@@ -57,7 +58,7 @@ export class SearchFlightComponent implements OnInit {
         : this.sources.filter(v => v.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10))
     )
 
-  searchDestination =(text$: Observable<string>) =>
+  searchDestination = (text$: Observable<string>) =>
     text$.pipe(
       debounceTime(200),
       distinctUntilChanged(),
@@ -65,12 +66,13 @@ export class SearchFlightComponent implements OnInit {
         : this.destinations.filter(v => v.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10))
     )
 
-  
+
   searchFlight() {
     this.submitted = true;
     if (this.searchFlightForm.invalid) {
       return;
     }
+
     this.searched = true;
     this.getFlights();
   }
@@ -86,6 +88,48 @@ export class SearchFlightComponent implements OnInit {
         console.log(err);
         this.loader.hide();
       })
+  }
+
+  findSource(e) {
+    let source = e.target.value;
+    if (source == '') {
+      return;
+    }
+    let pattern = /^([a-zA-Z]+[ ]?)+$/
+    if (!pattern.test(source)) {
+      return;
+    }
+    let index = this.sources.findIndex(function (value) {
+      return value == source;
+    });
+    if (index == -1) {
+      this.searchFlightForm.controls['source'].setErrors({ 'invalidSource': true })
+    }
+    else {
+      this.searchFlightForm.controls['source'].setErrors(null);
+      this.searchFlightForm.controls['source'].setValidators([Validators.required, Validators.pattern("([a-zA-Z]+[ ]?)+")]);
+      this.searchFlightForm.controls['source'].updateValueAndValidity();
+    }
+  }
+  findDestination(e) {
+    let destination = e.target.value;
+    if (destination == '')
+      return;
+    let pattern = /^([a-zA-Z]+[ ]?)+$/
+    if (!pattern.test(destination))
+      return;
+    let index = this.destinations.findIndex(function (value) {
+      return value == destination;
+    });
+    if (index == -1) {
+      this.searchFlightForm.controls['destination'].setErrors({ 'invalidDestination': true })
+    }
+    else {
+      this.searchFlightForm.controls['destination'].setErrors(null);
+      this.searchFlightForm.controls['destination'].setValidators([Validators.required, Validators.pattern("([a-zA-Z]+[ ]?)+")]);
+      this.searchFlightForm.controls['destination'].updateValueAndValidity();
+
+    }
   }
 
 }
