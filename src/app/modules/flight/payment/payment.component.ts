@@ -8,6 +8,9 @@ import { faRupeeSign } from '@fortawesome/free-solid-svg-icons';
 import { flyInOut } from '../../../animations/route.animation';
 import { delay } from 'rxjs/operators';
 import { LoadingService } from 'src/app/services/loading.service';
+import { HttpErrorResponse } from '@angular/common/http';
+import { Router } from '@angular/router';
+import { ToastService } from 'src/app/services/toast.service';
 
 @Component({
   selector: 'app-payment',
@@ -52,11 +55,12 @@ export class PaymentComponent implements OnInit {
     { value: '11', name: 'November - 11' },
     { value: '12', name: 'December - 12' }
   ]
-  constructor(private builder:FormBuilder,private flightService:FlightService,private modalService:NgbModal,private loader:LoadingService) { }
+  constructor(private builder:FormBuilder,private flightService:FlightService,private modalService:NgbModal,
+    private loader:LoadingService,private router:Router,private toastService:ToastService) { }
 
   ngOnInit() {
     this.paymentForm = this.builder.group({
-      name:['',[Validators.required,Validators.pattern("[a-zA-Z ]{2,}")]],
+      name: ['', [Validators.required, Validators.pattern("([a-zA-Z]+[ ]?)+")]],
       cardNo:['',[Validators.required,Validators.pattern("[1-9][0-9]{15}")]],
       month:[,[Validators.required]],
       year:[,[Validators.required]],
@@ -77,7 +81,14 @@ export class PaymentComponent implements OnInit {
       this.loader.hide();
       this.flightService.setSelectedFlight();
       this.paySuccess();
-    },err=>{
+    }, (err: HttpErrorResponse) => {
+      if (err.status == 0) {
+        this.router.navigate(['error']);
+      }
+      if (err.status >= 400) {
+        this.toastService.setError(err.error);
+        this.toastService.show();
+      }
       this.loader.hide();
     })
   }

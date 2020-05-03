@@ -4,6 +4,7 @@ import { UserService } from '../user.service';
 import { Router } from '@angular/router';
 import { flyUpDown } from '../../../animations/route.animation';
 import { faEye, faEyeSlash} from '@fortawesome/free-solid-svg-icons';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
@@ -47,11 +48,13 @@ export class LoginComponent implements OnInit {
       localStorage.setItem('$F#R%S_ToKeN',data['jwt']);
       this.router.navigate(['/dashboard/search-flight']);
 
-    },err=>{
+    },(err:HttpErrorResponse)=>{
       this.loading = false;
       this.errors = err.error;
       this.error = true;
       this.show = true;
+      if(err.status == 0) {}
+      this.router.navigate(['error']);
     })
   }
       close(){

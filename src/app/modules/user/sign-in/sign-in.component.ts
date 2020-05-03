@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { PasswordValidator } from '../password-validator';
 import { faCheckCircle, faEyeSlash, faEye, faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 import { flyUpDown } from '../../../animations/route.animation';
+import { HttpErrorResponse } from '@angular/common/http';
 
 
 @Component({
@@ -34,11 +35,11 @@ export class SignInComponent implements OnInit {
 
   ngOnInit(): void {
     this.signInForm = this.builder.group({
-      name: ['', [Validators.required, Validators.pattern("([a-zA-Z]+[ ]?)+")]],
+      name: ['', [Validators.required, Validators.pattern("([a-zA-Z]+[ ]?)+"),Validators.maxLength(50)]],
       username: ['', [Validators.required, Validators.email]],
       password: ['', Validators.compose([Validators.required, Validators.minLength(8),
       PasswordValidator.hasNumber, PasswordValidator.hasCapitalLetter, PasswordValidator.hasSmallLetter, PasswordValidator.hasSymbol])],
-      age: ['', [Validators.required, Validators.pattern("[1-9][0-9]")]],
+      age: ['', [Validators.required, Validators.pattern("[0-9]{1,}"),Validators.min(5),Validators.max(122)]],
       confirmPassword: ['', Validators.compose([Validators.required])],
       gender:['',Validators.required]
     }, { validator: PasswordValidator.passwordMatcher });
@@ -67,11 +68,15 @@ export class SignInComponent implements OnInit {
     this.service.addUser(this.signInForm.value).subscribe(data => {
       this.loading = false;
       this.router.navigate(['user', 'login'])
-    }, err => {
+    }, (err:HttpErrorResponse) => {
       this.error = true;
       this.show = true; 
       this.loading = false;    
       this.errors = err.error; 
+      if(err.status == 0)
+      {
+        this.router.navigate(['error']);
+      }
     })
 
   }

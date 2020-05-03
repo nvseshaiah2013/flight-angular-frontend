@@ -28,7 +28,10 @@
                                 Name is a Required Field!
                             </div>
                             <div class="badge badge-danger badge-pill" *ngIf="signInForm.controls.name.errors.pattern">
-                                Name must only contain alphabets!
+                                Name must only contain alphabets with single space separated!
+                            </div>
+                            <div class="badge badge-danger badge-pill" *ngIf="signInForm.controls.name.errors.maxlength">
+                                Maximum name length can be 50!
                             </div>
                         </div>
                     </div>
@@ -154,7 +157,13 @@
                                 Age is a Required Field!
                             </div>
                             <div class="badge badge-danger badge-pill" *ngIf="signInForm.controls.age.errors.pattern">
-                                Age should be between 10 and 99!
+                                Age can only contain digits.
+                            </div>
+                            <div class="badge badge-danger badge-pill" *ngIf="signInForm.controls.age.errors.min">
+                                Minimum age should be 5!
+                            </div>
+                            <div class="badge badge-danger badge-pill" *ngIf="signInForm.controls.age.errors.max">
+                                Maximum age can be 122!
                             </div>
                         </div>
                     </div>

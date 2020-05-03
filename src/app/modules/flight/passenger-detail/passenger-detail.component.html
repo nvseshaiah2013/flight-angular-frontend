@@ -1,4 +1,4 @@
-<div class="container" *ngIf="flight">
+<div class="container-fluid" *ngIf="flight">
     <div class="card-header bg-dark text-white font-weight-bold lead">
         <div class="row">
             <div class="col-12 col-md-3 text-center text-md-left">
@@ -59,7 +59,10 @@
                         Name is Required!
                     </div>
                     <div class="badge badge-pill badge-danger" *ngIf="passengerForm.controls.name.errors.pattern">
-                        Name can only contain characters!
+                        Name can only contain alphabets, single space only allowed.
+                    </div>
+                    <div class="badge badge-pill badge-danger" *ngIf="passengerForm.controls.name.errors.maxlength">
+                        Maximum name length can be 50!
                     </div>
                 </div>
             </div>
@@ -148,7 +151,7 @@
                     </ul>
                 </div>
                 <div class="badge badge-pill badge-danger" *ngIf="passengerForm.controls.idNo.errors.invalidAadhar">
-                    Aadhar Number is invalid! (Example Aadhar: 221234567890)
+                    Aadhar Number is invalid! (Example Aadhar: 221234567890) Aadhar never starts from 0 or 1.
                 </div>
                 </div>
             </div>
@@ -162,7 +165,7 @@
         <div class="row mt-5">
             <div class="col-md-6 col-12 text-md-right">
 
-                <button type="submit" class="btn btn-primary px-md-3 my-2"> Add Passenger <fa-icon [icon]="faPlusSquare" class="mx-2"></fa-icon></button>
+                <button type="submit" class="btn btn-primary px-md-3 my-md-2"> Add Passenger <fa-icon [icon]="faPlusSquare" class="mx-2"></fa-icon></button>
             </div>
             <div class="col-md-6 col-12">
 

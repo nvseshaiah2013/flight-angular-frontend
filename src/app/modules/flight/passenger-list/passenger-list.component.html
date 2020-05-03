@@ -31,6 +31,11 @@
 </div>
 
 <div class="container-fluid">
+    <div class="row">
+        <div class="col-12 col-md-4 offset-md-8 my-3 text-md-right">
+            <button class="btn btn-info" (click)="goBack()"> Go Back <fa-icon [icon]="faArrowCircleLeft"></fa-icon></button>
+        </div>
+    </div>
     <div class="card-header bg-dark text-white font-weight-bold text-center lead mb-2">
         Favourite Passenger List
     </div>
@@ -49,7 +54,7 @@
                     <th *ngIf="select" scope="col">Actions</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody *ngIf="passengerList.length != 0">
                 <tr *ngFor="let passenger of passengerList; let i=index;">
                     <th scope="col">{{i+1}}</th>
                     <td>{{passenger.name}}</td>
@@ -64,6 +69,12 @@
                     <td *ngIf="select"><button class="btn btn-success" (click)="onSelect(passenger)">Select <fa-icon
                                 [icon]="faMousePointer"></fa-icon></button></td>
 
+                </tr>
+            </tbody>
+            <tbody> 
+                <tr class="text-center">
+                    <td colspan="7" *ngIf="select"> <a class="btn btn-success" routerLink="/dashboard/passenger-detail"> Add Passenger <fa-icon [icon]="faPlus"></fa-icon> </a> </td>
+                    <td colspan="8" *ngIf="!select"> <a class="btn btn-success"  routerLink="/dashboard/search-flight"> Choose Flight <fa-icon [icon]="faPlus"></fa-icon> </a> </td>
                 </tr>
             </tbody>
         </table>

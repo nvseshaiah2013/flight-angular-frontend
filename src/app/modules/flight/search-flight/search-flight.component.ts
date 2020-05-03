@@ -9,7 +9,9 @@ import { Observable } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map, delay } from 'rxjs/operators';
 import { flyInOut } from '../../../animations/route.animation';
 import { LoadingService } from 'src/app/services/loading.service';
-import { ValueConverter } from '@angular/compiler/src/render3/view/template';
+import { HttpErrorResponse } from '@angular/common/http';
+import { Router } from '@angular/router';
+import { ToastService } from 'src/app/services/toast.service';
 
 @Component({
   selector: 'app-search-flight',
@@ -36,13 +38,30 @@ export class SearchFlightComponent implements OnInit {
   todayDate: NgbDate = new NgbDate(this.minDate.getFullYear(), this.minDate.getMonth() + 1, this.minDate.getDate());
   sources: string[] = [];
   destinations: string[] = [];
-  constructor(private builder: FormBuilder, private service: FlightService, private loader: LoadingService) {
+  constructor(private builder: FormBuilder, private service: FlightService, private loader: LoadingService
+    ,private router:Router,private toastService:ToastService) {
 
   }
 
   ngOnInit(): void {
-    this.service.getSources().subscribe(sources => { this.sources = sources });
-    this.service.getDestinations().subscribe(destinations => this.destinations = destinations);
+    this.service.getSources().subscribe(sources => { this.sources = sources } ,(err:HttpErrorResponse)=>{
+      if (err.status == 0) {
+        this.router.navigate(['error']);
+      }
+      if (err.status >= 400) {
+        this.toastService.setError(err.error);
+        this.toastService.show();
+      }
+    });
+    this.service.getDestinations().subscribe(destinations => this.destinations = destinations,(err:HttpErrorResponse)=>{
+      if (err.status == 0) {
+        this.router.navigate(['error']);
+      }
+      if (err.status >= 400) {
+        this.toastService.setError(err.error);
+        this.toastService.show();
+      }
+    });
     this.searchFlightForm = this.builder.group({
       source: ['', [Validators.required, Validators.pattern("([a-zA-Z]+[ ]?)+")]],
       destination: ['', [Validators.required, Validators.pattern("([a-zA-Z]+[ ]?)+")]],
@@ -84,8 +103,14 @@ export class SearchFlightComponent implements OnInit {
       flightData.date.value).pipe(delay(2000)).subscribe(data => {
         this.loader.hide();
         this.flights = data;
-      }, err => {
-        console.log(err);
+      }, (err:HttpErrorResponse) => {
+          if (err.status == 0) {
+            this.router.navigate(['error']);
+          }
+          if (err.status >= 400) {
+            this.toastService.setError(err.error);
+            this.toastService.show();
+          }
         this.loader.hide();
       })
   }

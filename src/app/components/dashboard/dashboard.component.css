@@ -3,8 +3,6 @@
 }
 
 .sidenav{
-    width: auto;
-    /* position: fixed; */
     padding:8px 0;
    
 }
@@ -13,4 +11,26 @@
 {
     margin-left: 25%;
     width: 75%;
+}
+
+.open-side-nav{
+   position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100wh;
+  height: 100%;
+  z-index: 100;
+  background-color: rgba(0,0,0,0.5);
+}
+
+.toasta{
+    right:0;
+    top:10px;
+    width: 30vw;
+    height: auto;
+    z-index: 100;
+    display: block;
+    position: fixed;
+    background-color: rgb(255, 187, 187);
 }

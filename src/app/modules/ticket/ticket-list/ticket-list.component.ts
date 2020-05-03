@@ -3,6 +3,9 @@ import { Ticket } from '../../../models/ticket.model';
 import { TicketService } from '../ticket.service';
 import { faAddressCard } from '@fortawesome/free-regular-svg-icons';
 import { flyInOut } from '../../../animations/route.animation';
+import { HttpErrorResponse } from '@angular/common/http';
+import { Router } from '@angular/router';
+import { ToastService } from 'src/app/services/toast.service';
 
 @Component({
   selector: 'app-ticket-list',
@@ -18,7 +21,8 @@ export class TicketListComponent implements OnInit {
   private tickets: Ticket[];
   private ticketsView:Ticket[]=[];
   faAddressCard = faAddressCard;
-  constructor(private ticketService: TicketService) {
+  constructor(private ticketService: TicketService,
+    private router:Router,private toastService:ToastService) {
     this.getTickets();
    }
   all;
@@ -35,7 +39,14 @@ export class TicketListComponent implements OnInit {
     this.ticketService.getTickets().subscribe(data => {
       this.tickets = data;
       this.allTicks();
-    }, err => {
+    }, (err:HttpErrorResponse) => {
+        if (err.status == 0) {
+          this.router.navigate(['error']);
+        }
+        if (err.status >= 400) {
+          this.toastService.setError(err.error);
+          this.toastService.show();
+        }
       console.log(err);
     })
   }

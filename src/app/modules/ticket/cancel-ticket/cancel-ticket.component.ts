@@ -3,6 +3,9 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { faDoorClosed } from '@fortawesome/free-solid-svg-icons';
 import { Ticket } from 'src/app/models/ticket.model';
 import { TicketService } from '../ticket.service';
+import { HttpErrorResponse } from '@angular/common/http';
+import { Router } from '@angular/router';
+import { ToastService } from 'src/app/services/toast.service';
 
 
 
@@ -16,7 +19,8 @@ export class CancelTicketComponent implements OnInit {
   faDoorClosed = faDoorClosed;
   @Output() toReload = new EventEmitter<Ticket>();
   ticket:Ticket;
-  constructor(public activeModal:NgbActiveModal,private service:TicketService) { }
+  constructor(public activeModal:NgbActiveModal,private service:TicketService,
+    private router:Router,private toastService:ToastService) { }
 
   ngOnInit() {
   }
@@ -24,7 +28,14 @@ export class CancelTicketComponent implements OnInit {
     this.service.cancelTicket(this.ticket.ticket_id).subscribe(data => {
       this.activeModal.close();
        this.toReload.emit(this.ticket);
-    }, err => {console.log(err);
+    }, (err:HttpErrorResponse) => {
+        if (err.status == 0) {
+          this.router.navigate(['error']);
+        }
+        if (err.status >= 400) {
+          this.toastService.setError(err.error);
+          this.toastService.show();
+        }
         this.activeModal.close();
         this.toReload.emit(undefined);
     }

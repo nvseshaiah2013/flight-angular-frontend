@@ -7,6 +7,10 @@ import { faEdit,faTimesCircle } from '@fortawesome/free-regular-svg-icons'
 import { Router, NavigationEnd } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { IdentityValidator } from '../identity.validation';
+import { LoadingService } from 'src/app/services/loading.service';
+import { delay } from 'rxjs/operators';
+import { HttpErrorResponse } from '@angular/common/http';
+import { ToastService } from 'src/app/services/toast.service';
 
 @Component({
   selector: 'app-update-passenger',
@@ -35,7 +39,8 @@ export class UpdatePassengerComponent implements OnInit,OnDestroy {
     { value: 'DL', name: 'Driving License' },
     { value: 'Passport', name: 'Passport' }]
 
-  constructor(private builder:FormBuilder,private service:PassengerService,public activeModal:NgbActiveModal,private router:Router) { 
+  constructor(private builder:FormBuilder,private service:PassengerService,public activeModal:NgbActiveModal,private router:Router,
+    private loader:LoadingService,private toastService:ToastService) { 
     this.router.routeReuseStrategy.shouldReuseRoute = ()=>{
       return false;
     }
@@ -49,7 +54,7 @@ export class UpdatePassengerComponent implements OnInit,OnDestroy {
   ngOnInit() {
     this.passengerForm = this.builder.group({
       passenger_id:['',Validators.required],
-      name: ['', [Validators.required, Validators.pattern("[a-zA-Z ]{2,}")]],
+      name: ['', [Validators.required, Validators.pattern("([a-zA-Z]+[ ]?)+")]],
       age: ['', [Validators.required, Validators.pattern("[0-9]{1,}"), Validators.min(5), Validators.max(120)]],
       gender: ['', Validators.required],
       idType: ['', Validators.required],
@@ -85,10 +90,19 @@ export class UpdatePassengerComponent implements OnInit,OnDestroy {
     if (this.passengerForm.invalid) {
       return;
     }
-    console.log(this.passengerForm.value);
-    this.service.editPassenger(this.passengerForm.value).subscribe(data=>{
+    this.loader.show();
+    this.service.editPassenger(this.passengerForm.value).pipe(delay(2000)).subscribe(data=>{
+      this.loader.hide();
       this.service.reload();
-    },err=>{
+    },(err:HttpErrorResponse)=>{
+      if(err.status == 0){
+        this.router.navigate(['error']);
+      }
+      if(err.status >= 400 ){
+        this.toastService.setError(err.error);
+        this.toastService.show();
+      }
+      this.loader.hide();
       console.log(err);
     });
     this.activeModal.close();

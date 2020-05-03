@@ -1,12 +1,31 @@
+<div class="toasta" *ngIf="showToast">
+    <div class="modal-header" >
+        <p class="lead text-danger font-weight-bold" *ngIf="error"> Error - {{error.status}}</p>
+        <button (click)="toggle()" class="btn btn-transparent">
+            <fa-icon [icon]="faTimesCircle"></fa-icon>
+        </button>
+    </div>
+    <div class="modal-body text-danger font-weight-bold" *ngIf="error">
+        <p class="blockquote">{{error.message}}</p>
+    </div>
+</div>
 <div>
     <app-contact></app-contact>
     <app-navbar></app-navbar>
+  
     <div class="container-fluid mt-5">
+        <div class="row d-md-none" >
+            <div class="col-12">
+                <button class="navbar-toggler" type="button" (click)="isMenuCollapsed = !isMenuCollapsed">
+                  View  <fa-icon [icon]="faChevronCircleRight"></fa-icon>
+                </button>
+            </div>
+        </div>
         <div class="row">
-            <div class="col-3 d-none d-md-block">
-                <div class="sidenav">
+            <div class="col-12 col-md-3 d-md-block" [ngbCollapse]="isMenuCollapsed">
+                   
                     <app-sidebar></app-sidebar>
-                </div>
+                
             </div>
             <div class="col-12 col-md-9">
                 <router-outlet></router-outlet>
