@@ -80,7 +80,6 @@ export class PassengerListComponent implements OnInit,OnDestroy {
         this.router.navigate(['error']);
       }
       if (err.status >= 400) {
-        console.log("error A");
         this.toastService.setError(err.error);
         this.toastService.show();
       }});

@@ -2,7 +2,7 @@
     <div class="modal-header" >
         <p class="lead text-danger font-weight-bold" *ngIf="error"> Error - {{error.status}}</p>
         <button (click)="toggle()" class="btn btn-transparent">
-            <fa-icon [icon]="faTimesCircle"></fa-icon>
+            <fa-icon [icon]="faTimesCircle" class="text-danger"></fa-icon>
         </button>
     </div>
     <div class="modal-body text-danger font-weight-bold" *ngIf="error">

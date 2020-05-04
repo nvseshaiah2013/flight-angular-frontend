@@ -12,6 +12,6 @@ export class AuthService {
 
   public isAuthenticated():boolean{
     const token = localStorage.getItem('$F#R%S_ToKeN');
-    return !this.helper.isTokenExpired(token);
+    return token && !this.helper.isTokenExpired(token);
   }
 }

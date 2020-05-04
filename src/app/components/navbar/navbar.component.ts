@@ -15,11 +15,12 @@ import { FlightService } from 'src/app/modules/flight/flight.service';
 export class NavbarComponent implements OnInit {
   isMenuCollapsed:boolean = true;
   faEllipsisH = faEllipsisH;
-  username:string  = 'UserA';
+  username:string  = '';
   
   constructor(private user:UserService,private jwt:JwtHelperService,private flightService:FlightService) { }
 
   ngOnInit(): void {
+    if (localStorage.getItem('$F#R%S_ToKeN')!=null)
     this.username = this.jwt.decodeToken(localStorage.getItem('$F#R%S_ToKeN')).sub.split('@')[0];
     
   }
