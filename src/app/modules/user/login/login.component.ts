@@ -53,8 +53,9 @@ export class LoginComponent implements OnInit {
       this.errors = err.error;
       this.error = true;
       this.show = true;
-      if(err.status == 0) {}
-      this.router.navigate(['error']);
+      if(err.status == 0) {
+        this.router.navigate(['error']);
+      }
     })
   }
       close(){

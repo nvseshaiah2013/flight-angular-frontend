@@ -9,13 +9,14 @@
                 <p class="lead">Source : {{ ticket.flight.source }}</p>
                 <p class="lead">Destination : {{ ticket.flight.destination }} </p>
                 <p class="lead">Status: {{ticket.status }}</p>
+                <p class="lead">Cargo Baggage: {{ticket.flight.cargobaggage}}</p>
             </div>
             <div class="col-12 col-md-6">
+                <p class="lead">{{ ticket.flight.flight_name }}</p>
                 <p class="lead">Price: {{ticket.flight.price }}</p>
                 <p class="lead">Boarding Date: {{ticket.flight.date | date:'fullDate'}}</p>
                 <p class="lead">Boarding Time: {{ticket.flight.date | date:'shortTime'}}</p>
                 <p class="lead">CheckIn Baggage : {{ticket.flight.checkinbaggage}}</p>
-                <p class="lead">Cargo Baggage: {{ticket.flight.cargobaggage}}</p>
             </div>
     
         </div>

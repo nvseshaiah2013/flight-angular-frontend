@@ -68,7 +68,9 @@ export class PassengerDetailComponent implements OnInit {
       this.loader.show();
       this.passengerService.savePassenger(this.passengerForm.value).pipe(delay(2000))
       .subscribe(data => 
-        { this.loader.hide() }, 
+        { this.loader.hide() 
+        this.flightService.addPassenger(this.passengerForm.value);
+        }, 
         (err:HttpErrorResponse) => { 
         
           if(err.status == 0)
@@ -83,7 +85,7 @@ export class PassengerDetailComponent implements OnInit {
           this.loader.hide();
        });
     }
-    this.flightService.addPassenger(this.passengerForm.value);
+    
 
   }
 
