@@ -10,7 +10,7 @@ export class TokenInterceptorService implements HttpInterceptor{
   constructor(private router:Router) { }
   intercept(req: HttpRequest<any>, next: HttpHandler):Observable<HttpEvent<any>> {
     return next.handle(req).pipe(tap(() => { 
-      if (localStorage.getItem('$F#R%S_ToKeN') == null){
+      if (req.url !='http://localhost:8080/users/add' && req.url !='http://localhost:8080/users/authenticate' && localStorage.getItem('$F#R%S_ToKeN') == null){
         {
           this.router.navigate(['user','login']);
         }

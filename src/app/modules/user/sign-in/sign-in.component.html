@@ -8,6 +8,14 @@
                 </p>
             </ngb-toast>
         </div>
+        <div class="offset-md-4 col-12 col-md-6 mt-4">
+            <ngb-toast *ngIf="sucess && show" header={{message.header}} [autohide]="false" (hide)="close()">
+        
+                <p class="text-success text-center font-weight-bold">
+                    {{ message.message }}
+                </p>
+            </ngb-toast>
+        </div>
     </div>
     <div class="row">
         <div class="offset-md-3 col-12 col-md-6">
